@@ -122,5 +122,6 @@
     <text name="403PageButton">Go back to Dashboard</text>
 	  
     <text name="HomeBannerNotExist">Home Banner doesn't Exist</text>
+    <text name="AttachmentNotExist">Attachment doesn't Exist</text>
   </texts>
 </localizationDictionary>

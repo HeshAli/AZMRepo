@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Abp.Zero.EntityFrameworkCore;
+﻿using Abp.Zero.EntityFrameworkCore;
+using AZMAdmin.CMS.Attachments;
 using AZMAdmin.CMS.Authorization.Roles;
 using AZMAdmin.CMS.Authorization.Users;
-using AZMAdmin.CMS.MultiTenancy;
 using AZMAdmin.CMS.HomeBanners;
+using AZMAdmin.CMS.MultiTenancy;
+using Microsoft.EntityFrameworkCore;
 
 namespace AZMAdmin.CMS.EntityFrameworkCore
 {
@@ -17,5 +18,6 @@ namespace AZMAdmin.CMS.EntityFrameworkCore
         }
 
         public DbSet<HomeBanner> HomeBanners { get; set; }
+        public DbSet<Attachment> Attachments { get; set; }
     }
 }
