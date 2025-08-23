@@ -3,6 +3,7 @@ using Abp.Zero.EntityFrameworkCore;
 using AZMAdmin.CMS.Authorization.Roles;
 using AZMAdmin.CMS.Authorization.Users;
 using AZMAdmin.CMS.MultiTenancy;
+using AZMAdmin.CMS.HomeBanners;
 
 namespace AZMAdmin.CMS.EntityFrameworkCore
 {
@@ -14,5 +15,7 @@ namespace AZMAdmin.CMS.EntityFrameworkCore
             : base(options)
         {
         }
+
+        public DbSet<HomeBanner> HomeBanners { get; set; }
     }
 }
