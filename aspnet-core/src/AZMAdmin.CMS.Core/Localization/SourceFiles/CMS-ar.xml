@@ -3,5 +3,6 @@
 	<texts>
 		<text name="HomeBannerNotExist">لا توجد لافتة</text>
 		<text name="AttachmentNotExist">لا توجد ملحقات</text>
+		<text name="ContentCategoryNotExist">لا توجد فئة للمحتوي</text>
 	</texts>
 </localizationDictionary>

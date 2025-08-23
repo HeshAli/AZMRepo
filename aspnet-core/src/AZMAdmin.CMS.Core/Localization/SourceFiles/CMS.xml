@@ -123,5 +123,6 @@
 	  
     <text name="HomeBannerNotExist">Home Banner doesn't Exist</text>
     <text name="AttachmentNotExist">Attachment doesn't Exist</text>
+    <text name="ContentCategoryNotExist">Content Category doesn't Exist</text>
   </texts>
 </localizationDictionary>
