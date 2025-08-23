@@ -4,6 +4,7 @@ using AZMAdmin.CMS.Authorization.Roles;
 using AZMAdmin.CMS.Authorization.Users;
 using AZMAdmin.CMS.ContentCategories;
 using AZMAdmin.CMS.Contents;
+using AZMAdmin.CMS.Courses;
 using AZMAdmin.CMS.Footers;
 using AZMAdmin.CMS.HomeBanners;
 using AZMAdmin.CMS.MultiTenancy;
@@ -25,5 +26,6 @@ namespace AZMAdmin.CMS.EntityFrameworkCore
         public DbSet<ContentCategory> ContentCategories { get; set; }
         public DbSet<Content> Contents { get; set; }
         public DbSet<Footer> Footers { get; set; }
+        public DbSet<Course> Courses { get; set; }
     }
 }
