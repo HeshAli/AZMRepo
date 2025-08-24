@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services.Dto;
+using AZMAdmin.CMS.Enums;
 
 namespace AZMAdmin.CMS.Footers.Dto
 {
@@ -10,5 +11,6 @@ namespace AZMAdmin.CMS.Footers.Dto
         public string DescriptionEn { get; set; }
         public string RedirectUrl { get; set; }
         public bool? IsActive { get; set; }
+        public FooterEnum Type { get; set; }
     }
 }

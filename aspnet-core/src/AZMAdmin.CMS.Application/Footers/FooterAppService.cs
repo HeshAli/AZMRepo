@@ -19,7 +19,7 @@ namespace AZMAdmin.CMS.Footers
             var footer = await _repository.FirstOrDefaultAsync(id);
 
             if (footer is null)
-                throw new UserFriendlyException(L("FooterNotExist", new CultureInfo("ar")));
+                throw new UserFriendlyException(L("FooterNotExist", CultureInfo.CurrentCulture.Name));
 
 
             footer.IsActive = !(footer.IsActive ?? false);

@@ -1,4 +1,5 @@
 ﻿using Abp.Domain.Entities.Auditing;
+using AZMAdmin.CMS.Enums;
 
 namespace AZMAdmin.CMS.Footers
 {
@@ -10,5 +11,6 @@ namespace AZMAdmin.CMS.Footers
         public string DescriptionEn { get; set; }
         public string RedirectUrl { get; set; }
         public bool? IsActive { get; set; }
+        public FooterEnum Type { get; set; }
     }
 }
