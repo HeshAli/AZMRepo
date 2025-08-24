@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using AZMAdmin.CMS.Courses.Dto;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AZMAdmin.CMS.Courses
@@ -12,5 +13,6 @@ namespace AZMAdmin.CMS.Courses
         Task<CourseDto> CreateCourseAsync(CreateCourseDto input);
         Task<CourseDto> UpdateCourseAsync(UpdateCourseDto input);
         Task DeleteCourseAsync(EntityDto<int> input);
+        Task<List<CourseDto>> GetActiveCourses();
     }
 }

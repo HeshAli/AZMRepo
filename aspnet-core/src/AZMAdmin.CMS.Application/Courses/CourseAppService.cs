@@ -48,6 +48,8 @@ namespace AZMAdmin.CMS.Courses
             return new PagedResultDto<CourseDto>(totalCount, dtos);
         }
 
+      
+
         public async Task<CourseDto> CreateCourseAsync(CreateCourseDto input)
         {
             var entity = ObjectMapper.Map<Course>(input);
@@ -81,5 +83,16 @@ namespace AZMAdmin.CMS.Courses
             await _repo.DeleteAsync(entity); // FullAuditedEntity -> soft delete honored
             await CurrentUnitOfWork.SaveChangesAsync();
         }
+
+
+
+        #region Website
+        public async Task<List<CourseDto>> GetActiveCourses()
+        {
+            var query = _repo.GetAll().Where(s => s.IsActive).ToList();
+
+            return ObjectMapper.Map<List<CourseDto>>(query);
+        }
+        #endregion
     }
 }
