@@ -6,7 +6,9 @@ namespace AZMAdmin.CMS.HomeBanners.Dto
     {
         public HomeBannerProfile()
         {
-            CreateMap<HomeBannerDto, HomeBanner>().ReverseMap();
+            CreateMap<HomeBanner, HomeBannerDto>();
+            CreateMap<CreateHomeBannerDto, HomeBanner>();
+            CreateMap<UpdateHomeBannerDto, HomeBanner>();
         }
     }
 }
