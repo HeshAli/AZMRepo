@@ -27,6 +27,12 @@ import { AppComponent } from './app.component';
                         canActivate: [AppRouteGuard]
                     },
                     {
+                        path: 'home-banners',
+                        loadChildren: () => import('./home-banners/home-banners.module').then((m) => m.HomeBannersModule),
+                        data: { permission: 'Pages.HomeBanners' },
+                        canActivate: [AppRouteGuard]
+                    },
+                    {
                         path: 'roles',
                         loadChildren: () => import('./roles/roles.module').then((m) => m.RolesModule),
                         data: { permission: 'Pages.Roles' },
