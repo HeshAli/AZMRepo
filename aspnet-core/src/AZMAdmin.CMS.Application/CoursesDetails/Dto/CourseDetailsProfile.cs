@@ -6,7 +6,9 @@ namespace AZMAdmin.CMS.CoursesDetails.Dto
     {
         public CourseDetailsProfile()
         {
-            CreateMap<CourseDetails, CourseDetailsDto>().ReverseMap();
+            CreateMap<CourseDetails, CourseDetailsDto>();
+            CreateMap<CreateCourseDetailsDto, CourseDetails>();
+            CreateMap<UpdateCourseDetailsDto, CourseDetails>();
         }
     }
 }

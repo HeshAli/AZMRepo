@@ -1,4 +1,5 @@
 ﻿using Abp.Configuration.Startup;
+using Abp.Localization;
 using Abp.Localization.Dictionaries;
 using Abp.Localization.Dictionaries.Xml;
 using Abp.Reflection.Extensions;
@@ -17,6 +18,7 @@ namespace AZMAdmin.CMS.Localization
                     )
                 )
             );
+            localizationConfiguration.Languages.Add(new LanguageInfo("ar", "Arabic", isDefault: true));
         }
     }
 }

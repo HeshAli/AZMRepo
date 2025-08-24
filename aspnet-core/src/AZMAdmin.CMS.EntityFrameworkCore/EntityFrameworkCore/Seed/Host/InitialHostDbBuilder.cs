@@ -1,4 +1,8 @@
-﻿namespace AZMAdmin.CMS.EntityFrameworkCore.Seed.Host
+﻿using Abp.Dependency;
+using Abp.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+
+namespace AZMAdmin.CMS.EntityFrameworkCore.Seed.Host
 {
     public class InitialHostDbBuilder
     {
@@ -11,6 +15,8 @@
 
         public void Create()
         {
+            var _provider = IocManager.Instance.Resolve<IDbContextProvider<CMSDbContext>>();
+            _provider.GetDbContext().Database.Migrate();
             new DefaultEditionCreator(_context).Create();
             new DefaultLanguagesCreator(_context).Create();
             new HostRoleAndUserCreator(_context).Create();

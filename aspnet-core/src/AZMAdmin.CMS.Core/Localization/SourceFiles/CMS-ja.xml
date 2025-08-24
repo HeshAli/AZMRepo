@@ -53,5 +53,6 @@
     <text name="Yes" value="はい" />
     <text name="No" value="いいえ" />
     <text name="Optional" value="オプション" />
+    <text name="ContentNotExist">لا يوجد محتوي</text>
   </texts>
 </localizationDictionary>

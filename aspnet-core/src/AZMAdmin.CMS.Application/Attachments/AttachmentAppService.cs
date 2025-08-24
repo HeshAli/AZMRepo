@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services;
+using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.UI;
 using AutoMapper;
@@ -7,18 +8,19 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
 
 namespace AZMAdmin.CMS.Attachments
 {
-    public class AttachmentAppService : AsyncCrudAppService<Attachment, AttachmentDto, int, PagedAttachmentResultRequestDto, CreateAttachmentDto, UpdateAttachmentDto, GetAttachmentDto, DeleteAttachmentDto>, IAttachmentAppService
+    public class AttachmentAppService : CMSAppServiceBase , IAttachmentAppService
     {
         private readonly IRepository<Attachment, int> _repository;
         private readonly IWebHostEnvironment _env;
         private readonly IMapper _mapper;
-        public AttachmentAppService(IRepository<Attachment, int> repository, IWebHostEnvironment env, IMapper mapper) : base(repository)
+        public AttachmentAppService(IRepository<Attachment, int> repository, IWebHostEnvironment env, IMapper mapper)  
         {
             _repository = repository;
             _env = env;
@@ -71,12 +73,48 @@ namespace AZMAdmin.CMS.Attachments
             await _repository.UpdateAsync(attachment);
             await CurrentUnitOfWork.SaveChangesAsync();
         }
-        #region Not Implemented
-        [RemoteService(false)]
-        public override Task<AttachmentDto> CreateAsync(CreateAttachmentDto input)
+        public async Task<AttachmentDto> GetAttachmentAsync(EntityDto<int> input)
         {
-            return base.CreateAsync(input);
+            var entity = await _repository.GetAsync(input.Id);
+            return ObjectMapper.Map<AttachmentDto>(entity);
         }
-        #endregion
+
+      
+
+        public async Task<AttachmentDto> CreateAttachmentAsync(CreateAttachmentDto input)
+        {
+            var entity = ObjectMapper.Map<Attachment>(input);
+            entity.IsActive ??= true;
+
+            var id = await _repository.InsertAndGetIdAsync(entity);
+            await CurrentUnitOfWork.SaveChangesAsync();
+
+            var created = await _repository.GetAsync(id);
+            return ObjectMapper.Map<AttachmentDto>(created);
+        }
+
+        public async Task<AttachmentDto> UpdateAttachmentAsync(UpdateAttachmentDto input)
+        {
+            var entity = await _repository.FirstOrDefaultAsync(input.Id);
+            if (entity == null)
+                throw new UserFriendlyException(L("AttachmentNotExist")); // add this key to your localization
+
+            ObjectMapper.Map(input, entity);
+            await _repository.UpdateAsync(entity);
+            await CurrentUnitOfWork.SaveChangesAsync();
+
+            return ObjectMapper.Map<AttachmentDto>(entity);
+        }
+
+        public async Task DeleteAttachmentAsync(EntityDto<int> input)
+        {
+            var entity = await _repository.FirstOrDefaultAsync(input.Id);
+            if (entity == null)
+                throw new UserFriendlyException(L("AttachmentNotExist"));
+
+            await _repository.DeleteAsync(entity);     // respects soft delete in FullAuditedEntity
+            await CurrentUnitOfWork.SaveChangesAsync();
+        }
+
     }
 }

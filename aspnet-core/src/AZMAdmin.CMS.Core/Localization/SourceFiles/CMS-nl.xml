@@ -84,5 +84,6 @@
     <text name="EditUser">Bewerk gebruiker</text>
     <text name="TenantIdIsNotActive{0}">HuurderId {0} is niet actief</text>
     <text name="UnknownTenantId{0}">Onbekend huurderId {0}</text>
+    <text name="ContentNotExist">لا يوجد محتوي</text>
   </texts>
 </localizationDictionary>
