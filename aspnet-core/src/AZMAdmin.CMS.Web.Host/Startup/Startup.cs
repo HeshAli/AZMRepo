@@ -1,22 +1,24 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Castle.Facilities.Logging;
-using Abp.AspNetCore;
+﻿using Abp.AspNetCore;
 using Abp.AspNetCore.Mvc.Antiforgery;
+using Abp.AspNetCore.SignalR.Hubs;
 using Abp.Castle.Logging.Log4Net;
 using Abp.Extensions;
 using AZMAdmin.CMS.Configuration;
+using AZMAdmin.CMS.EntityFrameworkCore;
 using AZMAdmin.CMS.Identity;
-using Abp.AspNetCore.SignalR.Hubs;
+using Castle.Facilities.Logging;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using System;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 
 namespace AZMAdmin.CMS.Web.Host.Startup
 {
@@ -47,6 +49,7 @@ namespace AZMAdmin.CMS.Web.Host.Startup
             AuthConfigurer.Configure(services, _appConfiguration);
 
             services.AddSignalR();
+           
 
             // Configure CORS for angular2 UI
             services.AddCors(
@@ -95,13 +98,14 @@ namespace AZMAdmin.CMS.Web.Host.Startup
             app.UseAuthorization();
 
             app.UseAbpRequestLocalization();
-
+           
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<AbpCommonHub>("/signalr");
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute("defaultWithArea", "{area}/{controller=Home}/{action=Index}/{id?}");
             });
+
 
             // Enable middleware to serve generated Swagger as a JSON endpoint
             app.UseSwagger(c => { c.RouteTemplate = "swagger/{documentName}/swagger.json"; });

@@ -17,10 +17,629 @@ namespace AZMAdmin.CMS.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("ProductVersion", "8.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("AZMAdmin.CMS.Attachments.Attachment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Extension")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Path")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Attachments");
+                });
+
+            modelBuilder.Entity("AZMAdmin.CMS.Authorization.Roles.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DisplayName")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<bool>("IsDefault")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsStatic")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<string>("NormalizedName")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorUserId");
+
+                    b.HasIndex("DeleterUserId");
+
+                    b.HasIndex("LastModifierUserId");
+
+                    b.HasIndex("TenantId", "NormalizedName");
+
+                    b.ToTable("AbpRoles");
+                });
+
+            modelBuilder.Entity("AZMAdmin.CMS.Authorization.Users.User", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AuthenticationSource")
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EmailAddress")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("EmailConfirmationCode")
+                        .HasMaxLength(328)
+                        .HasColumnType("nvarchar(328)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsEmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsLockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsPhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsTwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("LockoutEndDateUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<string>("NormalizedEmailAddress")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("PasswordResetCode")
+                        .HasMaxLength(328)
+                        .HasColumnType("nvarchar(328)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorUserId");
+
+                    b.HasIndex("DeleterUserId");
+
+                    b.HasIndex("LastModifierUserId");
+
+                    b.HasIndex("TenantId", "NormalizedEmailAddress");
+
+                    b.HasIndex("TenantId", "NormalizedUserName");
+
+                    b.ToTable("AbpUsers");
+                });
+
+            modelBuilder.Entity("AZMAdmin.CMS.ContentCategories.ContentCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DescriptionAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescriptionEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("NameAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContentCategories");
+                });
+
+            modelBuilder.Entity("AZMAdmin.CMS.Contents.Content", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("AttachmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ContentCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DescriptionAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescriptionEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("NameAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RedirectUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contents");
+                });
+
+            modelBuilder.Entity("AZMAdmin.CMS.Courses.Course", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DescriptionAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescriptionEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("NameAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RedirectUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Courses");
+                });
+
+            modelBuilder.Entity("AZMAdmin.CMS.CoursesDetails.CourseDetails", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("NameAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CoursesDetails");
+                });
+
+            modelBuilder.Entity("AZMAdmin.CMS.Footers.Footer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DescriptionAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescriptionEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("NameAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RedirectUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Footers");
+                });
+
+            modelBuilder.Entity("AZMAdmin.CMS.HomeBanners.HomeBanner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("LogoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NameAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("HomeBanners");
+                });
+
+            modelBuilder.Entity("AZMAdmin.CMS.MultiTenancy.Tenant", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ConnectionString")
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("EditionId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("TenancyName")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorUserId");
+
+                    b.HasIndex("DeleterUserId");
+
+                    b.HasIndex("EditionId");
+
+                    b.HasIndex("LastModifierUserId");
+
+                    b.HasIndex("TenancyName");
+
+                    b.ToTable("AbpTenants");
+                });
 
             modelBuilder.Entity("Abp.Application.Editions.Edition", b =>
                 {
@@ -102,7 +721,7 @@ namespace AZMAdmin.CMS.Migrations
 
                     b.ToTable("AbpFeatures");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("FeatureSetting");
+                    b.HasDiscriminator().HasValue("FeatureSetting");
 
                     b.UseTphMappingStrategy();
                 });
@@ -219,7 +838,7 @@ namespace AZMAdmin.CMS.Migrations
 
                     b.ToTable("AbpPermissions");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("PermissionSetting");
+                    b.HasDiscriminator().HasValue("PermissionSetting");
 
                     b.UseTphMappingStrategy();
                 });
@@ -1380,273 +1999,6 @@ namespace AZMAdmin.CMS.Migrations
                     b.ToTable("AbpWebhookSubscriptions");
                 });
 
-            modelBuilder.Entity("AZMAdmin.CMS.Authorization.Roles.Role", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(5000)
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DisplayName")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<bool>("IsDefault")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsStatic")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<string>("NormalizedName")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatorUserId");
-
-                    b.HasIndex("DeleterUserId");
-
-                    b.HasIndex("LastModifierUserId");
-
-                    b.HasIndex("TenantId", "NormalizedName");
-
-                    b.ToTable("AbpRoles");
-                });
-
-            modelBuilder.Entity("AZMAdmin.CMS.Authorization.Users.User", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("AuthenticationSource")
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("EmailAddress")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("EmailConfirmationCode")
-                        .HasMaxLength(328)
-                        .HasColumnType("nvarchar(328)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsEmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsLockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsPhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsTwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("LockoutEndDateUtc")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<string>("NormalizedEmailAddress")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("PasswordResetCode")
-                        .HasMaxLength(328)
-                        .HasColumnType("nvarchar(328)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatorUserId");
-
-                    b.HasIndex("DeleterUserId");
-
-                    b.HasIndex("LastModifierUserId");
-
-                    b.HasIndex("TenantId", "NormalizedEmailAddress");
-
-                    b.HasIndex("TenantId", "NormalizedUserName");
-
-                    b.ToTable("AbpUsers");
-                });
-
-            modelBuilder.Entity("AZMAdmin.CMS.MultiTenancy.Tenant", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ConnectionString")
-                        .HasMaxLength(1024)
-                        .HasColumnType("nvarchar(1024)");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("EditionId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("TenancyName")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatorUserId");
-
-                    b.HasIndex("DeleterUserId");
-
-                    b.HasIndex("EditionId");
-
-                    b.HasIndex("LastModifierUserId");
-
-                    b.HasIndex("TenancyName");
-
-                    b.ToTable("AbpTenants");
-                });
-
             modelBuilder.Entity("Abp.Application.Features.EditionFeatureSetting", b =>
                 {
                     b.HasBaseType("Abp.Application.Features.FeatureSetting");
@@ -1698,6 +2050,75 @@ namespace AZMAdmin.CMS.Migrations
                     b.ToTable("AbpPermissions");
 
                     b.HasDiscriminator().HasValue("UserPermissionSetting");
+                });
+
+            modelBuilder.Entity("AZMAdmin.CMS.Authorization.Roles.Role", b =>
+                {
+                    b.HasOne("AZMAdmin.CMS.Authorization.Users.User", "CreatorUser")
+                        .WithMany()
+                        .HasForeignKey("CreatorUserId");
+
+                    b.HasOne("AZMAdmin.CMS.Authorization.Users.User", "DeleterUser")
+                        .WithMany()
+                        .HasForeignKey("DeleterUserId");
+
+                    b.HasOne("AZMAdmin.CMS.Authorization.Users.User", "LastModifierUser")
+                        .WithMany()
+                        .HasForeignKey("LastModifierUserId");
+
+                    b.Navigation("CreatorUser");
+
+                    b.Navigation("DeleterUser");
+
+                    b.Navigation("LastModifierUser");
+                });
+
+            modelBuilder.Entity("AZMAdmin.CMS.Authorization.Users.User", b =>
+                {
+                    b.HasOne("AZMAdmin.CMS.Authorization.Users.User", "CreatorUser")
+                        .WithMany()
+                        .HasForeignKey("CreatorUserId");
+
+                    b.HasOne("AZMAdmin.CMS.Authorization.Users.User", "DeleterUser")
+                        .WithMany()
+                        .HasForeignKey("DeleterUserId");
+
+                    b.HasOne("AZMAdmin.CMS.Authorization.Users.User", "LastModifierUser")
+                        .WithMany()
+                        .HasForeignKey("LastModifierUserId");
+
+                    b.Navigation("CreatorUser");
+
+                    b.Navigation("DeleterUser");
+
+                    b.Navigation("LastModifierUser");
+                });
+
+            modelBuilder.Entity("AZMAdmin.CMS.MultiTenancy.Tenant", b =>
+                {
+                    b.HasOne("AZMAdmin.CMS.Authorization.Users.User", "CreatorUser")
+                        .WithMany()
+                        .HasForeignKey("CreatorUserId");
+
+                    b.HasOne("AZMAdmin.CMS.Authorization.Users.User", "DeleterUser")
+                        .WithMany()
+                        .HasForeignKey("DeleterUserId");
+
+                    b.HasOne("Abp.Application.Editions.Edition", "Edition")
+                        .WithMany()
+                        .HasForeignKey("EditionId");
+
+                    b.HasOne("AZMAdmin.CMS.Authorization.Users.User", "LastModifierUser")
+                        .WithMany()
+                        .HasForeignKey("LastModifierUserId");
+
+                    b.Navigation("CreatorUser");
+
+                    b.Navigation("DeleterUser");
+
+                    b.Navigation("Edition");
+
+                    b.Navigation("LastModifierUser");
                 });
 
             modelBuilder.Entity("Abp.Authorization.Roles.RoleClaim", b =>
@@ -1823,75 +2244,6 @@ namespace AZMAdmin.CMS.Migrations
                     b.Navigation("WebhookEvent");
                 });
 
-            modelBuilder.Entity("AZMAdmin.CMS.Authorization.Roles.Role", b =>
-                {
-                    b.HasOne("AZMAdmin.CMS.Authorization.Users.User", "CreatorUser")
-                        .WithMany()
-                        .HasForeignKey("CreatorUserId");
-
-                    b.HasOne("AZMAdmin.CMS.Authorization.Users.User", "DeleterUser")
-                        .WithMany()
-                        .HasForeignKey("DeleterUserId");
-
-                    b.HasOne("AZMAdmin.CMS.Authorization.Users.User", "LastModifierUser")
-                        .WithMany()
-                        .HasForeignKey("LastModifierUserId");
-
-                    b.Navigation("CreatorUser");
-
-                    b.Navigation("DeleterUser");
-
-                    b.Navigation("LastModifierUser");
-                });
-
-            modelBuilder.Entity("AZMAdmin.CMS.Authorization.Users.User", b =>
-                {
-                    b.HasOne("AZMAdmin.CMS.Authorization.Users.User", "CreatorUser")
-                        .WithMany()
-                        .HasForeignKey("CreatorUserId");
-
-                    b.HasOne("AZMAdmin.CMS.Authorization.Users.User", "DeleterUser")
-                        .WithMany()
-                        .HasForeignKey("DeleterUserId");
-
-                    b.HasOne("AZMAdmin.CMS.Authorization.Users.User", "LastModifierUser")
-                        .WithMany()
-                        .HasForeignKey("LastModifierUserId");
-
-                    b.Navigation("CreatorUser");
-
-                    b.Navigation("DeleterUser");
-
-                    b.Navigation("LastModifierUser");
-                });
-
-            modelBuilder.Entity("AZMAdmin.CMS.MultiTenancy.Tenant", b =>
-                {
-                    b.HasOne("AZMAdmin.CMS.Authorization.Users.User", "CreatorUser")
-                        .WithMany()
-                        .HasForeignKey("CreatorUserId");
-
-                    b.HasOne("AZMAdmin.CMS.Authorization.Users.User", "DeleterUser")
-                        .WithMany()
-                        .HasForeignKey("DeleterUserId");
-
-                    b.HasOne("Abp.Application.Editions.Edition", "Edition")
-                        .WithMany()
-                        .HasForeignKey("EditionId");
-
-                    b.HasOne("AZMAdmin.CMS.Authorization.Users.User", "LastModifierUser")
-                        .WithMany()
-                        .HasForeignKey("LastModifierUserId");
-
-                    b.Navigation("CreatorUser");
-
-                    b.Navigation("DeleterUser");
-
-                    b.Navigation("Edition");
-
-                    b.Navigation("LastModifierUser");
-                });
-
             modelBuilder.Entity("Abp.Application.Features.EditionFeatureSetting", b =>
                 {
                     b.HasOne("Abp.Application.Editions.Edition", "Edition")
@@ -1921,26 +2273,6 @@ namespace AZMAdmin.CMS.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Abp.DynamicEntityProperties.DynamicProperty", b =>
-                {
-                    b.Navigation("DynamicPropertyValues");
-                });
-
-            modelBuilder.Entity("Abp.EntityHistory.EntityChange", b =>
-                {
-                    b.Navigation("PropertyChanges");
-                });
-
-            modelBuilder.Entity("Abp.EntityHistory.EntityChangeSet", b =>
-                {
-                    b.Navigation("EntityChanges");
-                });
-
-            modelBuilder.Entity("Abp.Organizations.OrganizationUnit", b =>
-                {
-                    b.Navigation("Children");
-                });
-
             modelBuilder.Entity("AZMAdmin.CMS.Authorization.Roles.Role", b =>
                 {
                     b.Navigation("Claims");
@@ -1961,6 +2293,26 @@ namespace AZMAdmin.CMS.Migrations
                     b.Navigation("Settings");
 
                     b.Navigation("Tokens");
+                });
+
+            modelBuilder.Entity("Abp.DynamicEntityProperties.DynamicProperty", b =>
+                {
+                    b.Navigation("DynamicPropertyValues");
+                });
+
+            modelBuilder.Entity("Abp.EntityHistory.EntityChange", b =>
+                {
+                    b.Navigation("PropertyChanges");
+                });
+
+            modelBuilder.Entity("Abp.EntityHistory.EntityChangeSet", b =>
+                {
+                    b.Navigation("EntityChanges");
+                });
+
+            modelBuilder.Entity("Abp.Organizations.OrganizationUnit", b =>
+                {
+                    b.Navigation("Children");
                 });
 #pragma warning restore 612, 618
         }

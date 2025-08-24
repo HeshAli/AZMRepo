@@ -120,5 +120,6 @@
     <text name="403PageHeader">Yetkisiz Erişim</text>
     <text name="403PageDescription">Bu sayfaya erişmek için yetkiniz yok. Lütfen yöneticinizle iletişime geçin.</text>
     <text name="403PageButton">Dashboard'a dön</text>
+    <text name="ContentNotExist">لا يوجد محتوي</text>
   </texts>
 </localizationDictionary>

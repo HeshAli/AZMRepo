@@ -120,5 +120,11 @@
     <text name="403PageHeader">Forbidden</text>
     <text name="403PageDescription">You don't have permission to access this resource. Please contact your administrator.</text>
     <text name="403PageButton">Go back to Dashboard</text>
+	  
+    <text name="HomeBannerNotExist">Home Banner doesn't Exist</text>
+    <text name="AttachmentNotExist">Attachment doesn't Exist</text>
+    <text name="ContentCategoryNotExist">Content Category doesn't Exist</text>
+    <text name="ContentNotExist">Content doesn't Exist</text>
+    <text name="FooterNotExist">Footer doesn't Exist</text>
   </texts>
 </localizationDictionary>

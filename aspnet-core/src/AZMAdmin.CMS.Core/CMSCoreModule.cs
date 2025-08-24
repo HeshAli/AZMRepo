@@ -36,7 +36,7 @@ namespace AZMAdmin.CMS
 
             Configuration.Settings.Providers.Add<AppSettingProvider>();
             
-            Configuration.Localization.Languages.Add(new LanguageInfo("fa", "فارسی", "famfamfam-flags ir"));
+            Configuration.Localization.Languages.Add(new LanguageInfo("ar", "عربي", "famfamfam-flags sa"));
             
             Configuration.Settings.SettingEncryptionConfiguration.DefaultPassPhrase = CMSConsts.DefaultPassPhrase;
             SimpleStringCipher.DefaultPassPhrase = CMSConsts.DefaultPassPhrase;

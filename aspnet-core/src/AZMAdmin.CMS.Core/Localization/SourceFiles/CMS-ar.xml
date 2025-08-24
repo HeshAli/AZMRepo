@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localizationDictionary culture="ar">
+	<texts>
+		<text name="HomeBannerNotExist">لا توجد لافتة</text>
+		<text name="AttachmentNotExist">لا توجد ملحقات</text>
+		<text name="ContentCategoryNotExist">لا توجد فئة للمحتوي</text>
+		<text name="ContentNotExist">لا يوجد محتوي</text>
+		<text name="FooterNotExist">لا توجد خاتمة</text>
+	</texts>
+</localizationDictionary>
