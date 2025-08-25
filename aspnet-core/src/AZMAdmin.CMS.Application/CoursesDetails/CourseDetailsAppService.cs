@@ -4,6 +4,7 @@ using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
 using Abp.UI;
+using AZMAdmin.CMS.Courses.Dto;
 using AZMAdmin.CMS.CoursesDetails.Dto;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -78,5 +79,14 @@ namespace AZMAdmin.CMS.CoursesDetails
             await _repo.DeleteAsync(entity); // soft-delete honored if enabled via FullAuditedEntity
             await CurrentUnitOfWork.SaveChangesAsync();
         }
+
+        #region Website
+        public async Task<List<CourseDetailsDto>> GetActiveCourses(int courseId)
+        {
+            var query = _repo.GetAll().Where(s => s.CourseId==courseId).ToList();
+
+            return ObjectMapper.Map<List<CourseDetailsDto>>(query);
+        }
+        #endregion
     }
 }
