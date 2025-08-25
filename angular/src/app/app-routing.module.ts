@@ -29,7 +29,7 @@ import { AppComponent } from './app.component';
                     {
                         path: 'home-banners',
                         loadChildren: () => import('./home-banners/home-banners.module').then((m) => m.HomeBannersModule),
-                        data: { permission: 'Pages.HomeBanners' },
+                          data: { permission: 'Pages.Roles' },
                         canActivate: [AppRouteGuard]
                     },
                     {
