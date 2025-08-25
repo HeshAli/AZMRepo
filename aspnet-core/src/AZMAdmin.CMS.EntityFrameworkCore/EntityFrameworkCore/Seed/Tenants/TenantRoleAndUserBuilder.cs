@@ -127,8 +127,8 @@ namespace AZMAdmin.CMS.EntityFrameworkCore.Seed.Tenants
                 {
                     Code = "Home_ProgressContent",
                     IsActive = true,
-                    NameAr = "خطوات التقدم",
-                    NameEn = "Progress Steps"
+                    NameAr = "محتوى خطوات التقدم",
+                    NameEn = "Progress Steps Content"
 
                 };
 
@@ -151,6 +151,38 @@ namespace AZMAdmin.CMS.EntityFrameworkCore.Seed.Tenants
 
                 _context.Contents.Add(content);
                 _context.SaveChanges();
+            }
+
+            var categoryHome_ProgressSteps = _context.ContentCategories.IgnoreQueryFilters().FirstOrDefault(u => u.Code == "Home_ProgressSteps");
+            if (categoryHome_ProgressSteps == null)
+            {
+                var CatAzm = new ContentCategory()
+                {
+                    Code = "Home_ProgressSteps",
+                    IsActive = true,
+                    NameAr = "خطوات التقدم",
+                    NameEn = "Progress Steps"
+
+                };
+
+                _context.ContentCategories.Add(CatAzm);
+                _context.SaveChanges(); 
+            }
+
+            var categoryHome_AcceptanceCriteria = _context.ContentCategories.IgnoreQueryFilters().FirstOrDefault(u => u.Code == "Home_AcceptanceCriteria");
+            if (categoryHome_AcceptanceCriteria == null)
+            {
+                var CatAzm = new ContentCategory()
+                {
+                    Code = "Home_AcceptanceCriteria",
+                    IsActive = true,
+                    NameAr = "معايير القبول",
+                    NameEn = "Acceptance Criteria"
+
+                };
+
+                _context.ContentCategories.Add(CatAzm);
+                _context.SaveChanges(); 
             }
         }
     }

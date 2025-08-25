@@ -25,5 +25,7 @@
 		    <text name="WhyTrainingAzm">لماذا تتدرب مع عزم</text>
     <text name="TargetAudience">الفئة المستهدفة</text>
     <text name="ProgressContent">محتوى خطوات التقدم</text>
+    <text name="ProgressSteps">خطوات التقدم</text>
+    <text name="AcceptanceCriteria">معايير القبول</text>
 	</texts>
 </localizationDictionary>

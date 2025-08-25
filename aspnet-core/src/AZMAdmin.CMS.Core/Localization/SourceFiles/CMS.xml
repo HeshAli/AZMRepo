@@ -129,7 +129,10 @@
     <text name="WhyTrainingAzm">Why Training with Azm</text>
     <text name="DescAr">Arabic Description</text>
     <text name="DescEn">English Description</text>
+    <text name="NameAr">Arabic Name</text>
+    <text name="NameEn">English Name</text>
     <text name="TargetAudience">Target Audience</text>
-    <text name="ProgressContent">Progress Steps Content</text>
+    <text name="ProgressSteps">Progress Steps</text>
+    <text name="AcceptanceCriteria">Acceptance Criteria</text>
   </texts>
 </localizationDictionary>

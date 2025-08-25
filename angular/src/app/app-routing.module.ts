@@ -60,6 +60,24 @@ import { AppComponent } from "./app.component";
                 /*  data: { permission: 'Pages.Roles' },*/
                 canActivate: [AppRouteGuard],
             },
+            {
+                path: "progressSteps",
+                loadChildren: () =>
+                    import("./home-progressSteps/home-progressSteps.module").then(
+                        (m) => m.ProgressStepsModule
+                    ),
+                /*  data: { permission: 'Pages.Roles' },*/
+                canActivate: [AppRouteGuard],
+            },
+            {
+                path: "acceptanceCriteria",
+                loadChildren: () =>
+                    import("./home-acceptanceCriteria/home-acceptanceCriteria.module").then(
+                        (m) => m.AcceptanceCriteriaModule
+                    ),
+                /*  data: { permission: 'Pages.Roles' },*/
+                canActivate: [AppRouteGuard],
+            },
           {
             path: "roles",
             loadChildren: () =>

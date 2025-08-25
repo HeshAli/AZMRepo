@@ -77,6 +77,17 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
               "/app/progressContent",
               "far fa-circle"
           ),
+
+          new MenuItem(
+              this.l("ProgressSteps"),
+              "/app/progressSteps",
+              "far fa-circle"
+          ),
+          new MenuItem(
+              this.l("AcceptanceCriteria"),
+              "/app/acceptanceCriteria",
+              "far fa-circle"
+          ),
       ]),
     ];
   }
