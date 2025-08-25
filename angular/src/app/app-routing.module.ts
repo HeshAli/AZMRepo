@@ -41,7 +41,25 @@ import { AppComponent } from "./app.component";
               ),
             /*  data: { permission: 'Pages.Roles' },*/
             canActivate: [AppRouteGuard],
-          },
+            },
+            {
+                path: "targetAudience",
+                loadChildren: () =>
+                    import("./home-targetAudience/home-targetAudience.module").then(
+                        (m) => m.TargetAudienceModule
+                    ),
+                /*  data: { permission: 'Pages.Roles' },*/
+                canActivate: [AppRouteGuard],
+            },
+            {
+                path: "progressContent",
+                loadChildren: () =>
+                    import("./home-progressContent/home-progressContent.module").then(
+                        (m) => m.ProgressContentModule
+                    ),
+                /*  data: { permission: 'Pages.Roles' },*/
+                canActivate: [AppRouteGuard],
+            },
           {
             path: "roles",
             loadChildren: () =>

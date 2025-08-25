@@ -18,9 +18,9 @@ import {
 import { NgForm } from '@angular/forms';
 
 @Component({
-    templateUrl: './edit-TrainingAzm-dialog.component.html'
+    templateUrl: './edit-progressContent-dialog.component.html'
 })
-export class EditTrainingAzmDialogComponent extends AppComponentBase
+export class EditProgressContentDialogComponent extends AppComponentBase
   implements OnInit {
     saving = false;
     content = new UpdateContentDto();

@@ -22,7 +22,7 @@ import {
 export class CreateTrainingAzmDialogComponent extends AppComponentBase
   implements OnInit {
     saving = false;
-    banner = new CreateContentDto();
+    content = new CreateContentDto();
 
   @Output() onSave = new EventEmitter<any>();
 
@@ -39,8 +39,8 @@ export class CreateTrainingAzmDialogComponent extends AppComponentBase
 
   save(): void {
     this.saving = true;
-      this.banner.categoryCode = "Home_TrainingWithAzm";
-      this._contentServiceProxy.createContent(this.banner).subscribe(
+      this.content.categoryCode = "Home_TrainingWithAzm";
+      this._contentServiceProxy.createContent(this.content).subscribe(
       () => {
         this.notify.info(this.l('SavedSuccessfully'));
         this.bsModalRef.hide();

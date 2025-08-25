@@ -66,7 +66,17 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
           this.l("WhyTrainingAzm"),
           "/app/trainingAzm",
           "far fa-circle"
-        ),
+          ),
+          new MenuItem(
+              this.l("TargetAudience"),
+              "/app/targetAudience",
+              "far fa-circle"
+          ),
+          new MenuItem(
+              this.l("ProgressContent"),
+              "/app/progressContent",
+              "far fa-circle"
+          ),
       ]),
     ];
   }

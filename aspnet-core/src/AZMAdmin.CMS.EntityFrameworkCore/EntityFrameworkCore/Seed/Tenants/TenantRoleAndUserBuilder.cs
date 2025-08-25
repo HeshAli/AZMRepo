@@ -6,6 +6,7 @@ using AZMAdmin.CMS.Authorization;
 using AZMAdmin.CMS.Authorization.Roles;
 using AZMAdmin.CMS.Authorization.Users;
 using AZMAdmin.CMS.ContentCategories;
+using AZMAdmin.CMS.Contents;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -95,12 +96,61 @@ namespace AZMAdmin.CMS.EntityFrameworkCore.Seed.Tenants
                     Code = "Home_TrainingWithAzm",
                     IsActive = true,
                     NameAr = "لماذا تتدرب مع عزم؟",
-                    NameEn = "Training With Azm"
+                    NameEn = "Training With Azm?"
 
                 }; 
 
                 _context.ContentCategories.Add(CatAzm);
                 _context.SaveChanges(); 
+            }
+
+            var categoryTargetAudience = _context.ContentCategories.IgnoreQueryFilters().FirstOrDefault(u => u.Code == "Home_TargetAudience");
+            if (categoryTargetAudience == null)
+            {
+                var CatAzm = new ContentCategory()
+                {
+                    Code = "Home_TargetAudience",
+                    IsActive = true,
+                    NameAr = "الفئة المستهدفة",
+                    NameEn = "Target Audience"
+
+                };
+
+                _context.ContentCategories.Add(CatAzm);
+                _context.SaveChanges();
+            }
+
+            var categoryProgressSteps = _context.ContentCategories.IgnoreQueryFilters().FirstOrDefault(u => u.Code == "Home_ProgressContent");
+            if (categoryProgressSteps == null)
+            {
+                var CatAzm = new ContentCategory()
+                {
+                    Code = "Home_ProgressContent",
+                    IsActive = true,
+                    NameAr = "خطوات التقدم",
+                    NameEn = "Progress Steps"
+
+                };
+
+                _context.ContentCategories.Add(CatAzm);
+                _context.SaveChanges();
+                categoryProgressSteps = CatAzm;
+            }
+
+            var ContentProgressSteps = _context.Contents.IgnoreQueryFilters().FirstOrDefault(u => u.ContentCategoryId == categoryProgressSteps.Id);
+            if (ContentProgressSteps == null)
+            {
+                var content = new Content()
+                {
+                    ContentCategoryId = categoryProgressSteps.Id,
+                    IsActive = true,
+                    NameAr = "ابدأ رحلة تطويرك المهني مع أكاديمية عزم واتخذ الخطوة الأولى نحو مسيرة مهنية مُثرية، واحصل على المهارات والموارد اللازمة لتحقيق النجاح.",
+                    NameEn = "Start your professional development journey with Azm Academy and take the first step toward an enriching career path. Gain the skills and resources you need to achieve success."
+
+                };
+
+                _context.Contents.Add(content);
+                _context.SaveChanges();
             }
         }
     }

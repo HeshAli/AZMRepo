@@ -127,5 +127,9 @@
     <text name="ContentNotExist">Content doesn't Exist</text>
     <text name="FooterNotExist">Footer doesn't Exist</text>
     <text name="WhyTrainingAzm">Why Training with Azm</text>
+    <text name="DescAr">Arabic Description</text>
+    <text name="DescEn">English Description</text>
+    <text name="TargetAudience">Target Audience</text>
+    <text name="ProgressContent">Progress Steps Content</text>
   </texts>
 </localizationDictionary>
