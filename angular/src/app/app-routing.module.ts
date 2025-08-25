@@ -17,6 +17,12 @@ import { AppComponent } from "./app.component";
             canActivate: [AppRouteGuard],
           },
           {
+            path: "about",
+            loadChildren: () =>
+              import("./about/about.module").then((m) => m.AboutModule),
+            canActivate: [AppRouteGuard],
+          },
+          {
             path: "users",
             loadChildren: () =>
               import("./users/users.module").then((m) => m.UsersModule),
@@ -29,7 +35,16 @@ import { AppComponent } from "./app.component";
               import("./home-banners/home-banners.module").then(
                 (m) => m.HomeBannersModule
               ),
-            data: { permission: "Pages.Roles" },
+            /*  data: { permission: 'Pages.Roles' },*/
+            canActivate: [AppRouteGuard],
+          },
+          {
+            path: "trainingAzm",
+            loadChildren: () =>
+              import("./home-trainingAzm/home-trainingAzm.module").then(
+                (m) => m.TrainingAzmModule
+              ),
+            /*  data: { permission: 'Pages.Roles' },*/
             canActivate: [AppRouteGuard],
           },
           {

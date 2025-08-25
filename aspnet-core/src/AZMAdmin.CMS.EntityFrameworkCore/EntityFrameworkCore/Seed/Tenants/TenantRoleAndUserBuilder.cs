@@ -1,14 +1,15 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Abp.Authorization;
+﻿using Abp.Authorization;
 using Abp.Authorization.Roles;
 using Abp.Authorization.Users;
 using Abp.MultiTenancy;
 using AZMAdmin.CMS.Authorization;
 using AZMAdmin.CMS.Authorization.Roles;
 using AZMAdmin.CMS.Authorization.Users;
+using AZMAdmin.CMS.ContentCategories;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using System.Linq;
 
 namespace AZMAdmin.CMS.EntityFrameworkCore.Seed.Tenants
 {
@@ -83,6 +84,23 @@ namespace AZMAdmin.CMS.EntityFrameworkCore.Seed.Tenants
                 // Assign Admin role to admin user
                 _context.UserRoles.Add(new UserRole(_tenantId, adminUser.Id, adminRole.Id));
                 _context.SaveChanges();
+            }
+
+
+            var categoryTrainingAzm = _context.ContentCategories.IgnoreQueryFilters().FirstOrDefault(u => u.Code == "Home_TrainingWithAzm");
+            if (categoryTrainingAzm == null)
+            {
+                var CatAzm = new ContentCategory()
+                {
+                    Code = "Home_TrainingWithAzm",
+                    IsActive = true,
+                    NameAr = "لماذا تتدرب مع عزم؟",
+                    NameEn = "Training With Azm"
+
+                }; 
+
+                _context.ContentCategories.Add(CatAzm);
+                _context.SaveChanges(); 
             }
         }
     }
