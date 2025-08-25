@@ -1,0 +1,60 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ l('EditHomeBanner') }}</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="bsModalRef.hide()"></button>
+</div>
+
+<div class="modal-body">
+  <form #editBannerForm="ngForm" novalidate>
+    <!-- Title -->
+    <div class="mb-3">
+      <label for="title" class="form-label">{{ l('NameAr') }}</label>
+      <input
+        id="title"
+        name="title"
+        type="text"
+        class="form-control"
+        [(ngModel)]="homeBanner.nameAr"
+        required
+      />
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label for="description" class="form-label">{{ l('NameEn') }}</label>
+      <textarea
+        id="description"
+        name="description"
+        class="form-control"
+        rows="3"
+        [(ngModel)]="homeBanner.nameEn"
+      ></textarea>
+    </div>
+
+    <!-- Active -->
+    <div class="form-check mb-3">
+      <input
+        id="isActive"
+        name="isActive"
+        type="checkbox"
+        class="form-check-input"
+        [(ngModel)]="homeBanner.isActive"
+      />
+      <label for="isActive" class="form-check-label">{{ l('IsActive') }}</label>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">
+    {{ l('Cancel') }}
+  </button>
+  <button
+    type="button"
+    class="btn btn-primary"
+    [disabled]="saving"
+    (click)="save()"
+  >
+    <i *ngIf="saving" class="fa fa-spinner fa-spin"></i>
+    {{ l('Save') }}
+  </button>
+</div>
