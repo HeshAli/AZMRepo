@@ -29,7 +29,13 @@ import { AppComponent } from './app.component';
                     {
                         path: 'home-banners',
                         loadChildren: () => import('./home-banners/home-banners.module').then((m) => m.HomeBannersModule),
-                          data: { permission: 'Pages.Roles' },
+                        /*  data: { permission: 'Pages.Roles' },*/
+                        canActivate: [AppRouteGuard]
+                    },
+                    {
+                        path: 'trainingAzm',
+                        loadChildren: () => import('./home-trainingAzm/home-trainingAzm.module').then((m) => m.TrainingAzmModule),
+                        /*  data: { permission: 'Pages.Roles' },*/
                         canActivate: [AppRouteGuard]
                     },
                     {

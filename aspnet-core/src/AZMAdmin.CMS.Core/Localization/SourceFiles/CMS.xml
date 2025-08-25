@@ -126,5 +126,6 @@
     <text name="ContentCategoryNotExist">Content Category doesn't Exist</text>
     <text name="ContentNotExist">Content doesn't Exist</text>
     <text name="FooterNotExist">Footer doesn't Exist</text>
+    <text name="WhyTrainingAzm">Why Training with Azm</text>
   </texts>
 </localizationDictionary>

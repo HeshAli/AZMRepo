@@ -68,8 +68,8 @@ namespace AZMAdmin.CMS.Contents
                 .WhereIf(input.ContentCategoryId.HasValue, x => x.ContentCategoryId == input.ContentCategoryId).AsQueryable();
 
             var totalCount = await query.CountAsync();
-            query= query.OrderByDescending(x => x.CreationTime)
-                    .PageBy(input);
+            query = query.OrderByDescending(x => x.CreationTime);
+                     
             var items = await query.ToListAsync();
 
             var dtos = ObjectMapper.Map<List<ContentDto>>(items);
@@ -79,8 +79,10 @@ namespace AZMAdmin.CMS.Contents
         [Authorize] // require login (remove if public)
         public async Task<ContentDto> CreateContentAsync(CreateContentDto input)
         {
-           
+
+            var currentCategory = await _Catrepo.FirstOrDefaultAsync(s => s.Code == input.CategoryCode);
             var entity = ObjectMapper.Map<Content>(input);
+            entity.ContentCategoryId = currentCategory.Id;
             entity.IsActive = entity.IsActive ?? true;
 
             var id = await _repo.InsertAndGetIdAsync(entity);

@@ -6,5 +6,6 @@
 		<text name="ContentCategoryNotExist">لا توجد فئة للمحتوي</text>
 		<text name="ContentNotExist">لا يوجد محتوي</text>
 		<text name="FooterNotExist">لا توجد خاتمة</text>
+    <text name="WhyTrainingAzm">لماذا تتدرب مع عزم</text>
 	</texts>
 </localizationDictionary>
