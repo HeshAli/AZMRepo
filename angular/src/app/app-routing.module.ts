@@ -16,12 +16,7 @@ import { AppComponent } from "./app.component";
               import("./home/home.module").then((m) => m.HomeModule),
             canActivate: [AppRouteGuard],
           },
-          {
-            path: "about",
-            loadChildren: () =>
-              import("./about/about.module").then((m) => m.AboutModule),
-            canActivate: [AppRouteGuard],
-          },
+
           {
             path: "users",
             loadChildren: () =>

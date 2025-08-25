@@ -6,5 +6,21 @@
 		<text name="ContentCategoryNotExist">لا توجد فئة للمحتوي</text>
 		<text name="ContentNotExist">لا يوجد محتوي</text>
 		<text name="FooterNotExist">لا توجد خاتمة</text>
+    <text name="WhyTrainingAzm">لماذا تتدرب مع عزم</text>
+		<text name="Roles">الأدوار</text>
+		<text name="Users">المستخدمون</text>
+		<text name="Home">هوم</text>
+		<text name="HomeBanners">لافتة الهوم</text>
+		<text name="Name">الأسم باللغة العربية</text>
+		<text name="NameEn">الاسم باللغة الإنجليزية</text>
+		<text name="IsActive">تفعيل</text>
+		<text name="Actions">الخيارات</text>
+		<text name="Create">اضافة</text>
+		<text name="Edit">تعديل</text>
+		<text name="Delete">حذف</text>
+		<text name="Search...">البحث</text>
+		<text name="Total">الإجمالي</text>
+		<text name="admin">الأدمن</text>
+		    <text name="WhyTrainingAzm">لماذا تتدرب مع عزم</text>
 	</texts>
 </localizationDictionary>
