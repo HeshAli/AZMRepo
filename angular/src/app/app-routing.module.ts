@@ -96,6 +96,15 @@ import { AppComponent } from "./app.component";
                 /*  data: { permission: 'Pages.Roles' },*/
                 canActivate: [AppRouteGuard],
             },
+            {
+                path: "questions",
+                loadChildren: () =>
+                    import("./question/question.module").then(
+                        (m) => m.QuestionModule
+                    ),
+                /*  data: { permission: 'Pages.Roles' },*/
+                canActivate: [AppRouteGuard],
+            },
           {
             path: "roles",
             loadChildren: () =>

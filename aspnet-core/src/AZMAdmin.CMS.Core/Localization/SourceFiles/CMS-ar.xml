@@ -47,6 +47,11 @@
 		<text name="Gallery">معرض الصور</text>
 		<text name="CreateGallery">انشاء صورة</text>
 		<text name="EditGallery">تعديل صورة</text>
-		<text name="GalleryImageDeleteWarningMessage">سوف يتم حذف صورة المعرض</text>
+    <text name="GalleryImageDeleteWarningMessage">سوف يتم حذف صورة المعرض</text>
+    <text name="Questions">الأسئلة</text>
+    <text name="QuestionAr">السؤال باللغة العربية</text>
+    <text name="QuestionEn">السؤال باللغة الإنجليزية</text>
+    <text name="AnswerAr">الإجابة باللغة العربية</text>
+    <text name="AnswerEn">الإجابة باللغة الإنجليزية</text>
 	</texts>
 </localizationDictionary>
