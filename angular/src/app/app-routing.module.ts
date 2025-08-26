@@ -113,6 +113,15 @@ import { AppComponent } from "./app.component";
                 /*  data: { permission: 'Pages.Roles' },*/
                 canActivate: [AppRouteGuard],
             },
+            {
+                path: "aboutAzmcontent",
+                loadChildren: () =>
+                    import("./aboutUsContent/aboutUsContent.module").then(
+                        (m) => m.AboutContentModule
+                    ),
+                /*  data: { permission: 'Pages.Roles' },*/
+                canActivate: [AppRouteGuard],
+            },
           {
             path: "roles",
             loadChildren: () =>

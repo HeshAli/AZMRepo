@@ -147,6 +147,8 @@
     <text name="QuestionEn">English Question</text>
     <text name="AnswerAr">Arabic Answer</text>
     <text name="AnswerEn">English Answer</text>
+    <text name="AboutAzm">About Azm</text>
+    <text name="AboutAzmContent">About Azm Content</text>
 	  <text name="CreateGeneralObjectives">Create General Objectives</text>
 	  <text name="EditGeneralObjectives">Edit General Objectives</text>
 	  <text name="GeneralObjectives">General Objectives</text>
