@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AZMAdmin.CMS.Attachments
@@ -20,11 +21,13 @@ namespace AZMAdmin.CMS.Attachments
         private readonly IRepository<Attachment, int> _repository;
         private readonly IWebHostEnvironment _env;
         private readonly IMapper _mapper;
-        public AttachmentAppService(IRepository<Attachment, int> repository, IWebHostEnvironment env, IMapper mapper)  
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public AttachmentAppService(IRepository<Attachment, int> repository, IWebHostEnvironment env, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _repository = repository;
             _env = env;
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
         }
         public async Task<AttachmentDto> UploadAttachment(IFormFile imageFile)
         {
@@ -48,10 +51,13 @@ namespace AZMAdmin.CMS.Attachments
                 await imageFile.CopyToAsync(stream);
             }
 
+            var request = _httpContextAccessor.HttpContext.Request;
+            var baseUrl = $"{request.Scheme}://{request.Host}";
+
             var attachment = new Attachment
             {
                 Extension = extension,
-                Path = $"/attachments/{fileName}",
+                Path = $"{baseUrl}/attachments/{fileName}",
                 FullPath = filePath,
                 IsActive = true
             };
@@ -79,7 +85,27 @@ namespace AZMAdmin.CMS.Attachments
             return ObjectMapper.Map<AttachmentDto>(entity);
         }
 
-      
+        public async Task<HomeBannerAttachmentsDto> GetHomeBannerAttachments(int? imageId, int? logoId)
+        {
+            var dto = new HomeBannerAttachmentsDto();
+
+            if (imageId.HasValue)
+            {
+                var image = await _repository.FirstOrDefaultAsync(imageId.Value);
+                if (image != null)
+                    dto.Image = _mapper.Map<AttachmentDto>(image);
+            }
+
+            if (logoId.HasValue)
+            {
+                var logo = await _repository.FirstOrDefaultAsync(logoId.Value);
+                if (logo != null)
+                    dto.Logo = _mapper.Map<AttachmentDto>(logo);
+            }
+
+            return dto;
+        }
+
 
         public async Task<AttachmentDto> CreateAttachmentAsync(CreateAttachmentDto input)
         {

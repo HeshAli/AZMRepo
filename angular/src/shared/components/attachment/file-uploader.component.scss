@@ -1,0 +1,110 @@
+.upload-container {
+    border: 2px dashed var(--border-color);
+    border-radius: 0.75rem;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .upload-container:hover {
+    border-color: var(--primary-color);
+    background-color: #f8fafc;
+  }
+  
+  .upload-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+  
+  .file-input {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  .upload-text {
+    margin: 0.5rem 0;
+    color: var(--text-color);
+  }
+  
+  .upload-hint {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  .preview-container {
+    margin-top: 2rem;
+    text-align: center;
+  }
+  
+  .preview-title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+  }
+  
+  .preview-image {
+    max-width: 350px;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .preview-image:hover {
+    transform: scale(1.02);
+  }
+  
+  .upload-progress {
+    margin-top: 1rem;
+    height: 4px;
+    background-color: var(--border-color);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+  }
+  
+  .selected-file {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background-color: #f3f4f6;
+    border-radius: 0.5rem;
+  }
+  
+  .file-icon {
+    color: var(--primary-color);
+    margin-right: 0.75rem;
+  }
+  
+  .file-name {
+    flex: 1;
+    font-size: 0.875rem;
+    color: var(--text-color);
+  }
+  
+  .remove-file {
+    color: #ef4444;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s ease;
+  }
+  
+  .remove-file:hover {
+    background-color: #fee2e2;
+  }

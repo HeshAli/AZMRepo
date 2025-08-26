@@ -60,8 +60,12 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
         "Pages.Users"
       ),
 
-      new MenuItem("Home", "", "fas fa-dot-circle", "", [
-        new MenuItem("Home Banner", "/app/home-banners", "far fa-circle"),
+      new MenuItem(this.l("Home"), "", "fas fa-dot-circle", "", [
+        new MenuItem(
+          this.l("HomeBanner"),
+          "/app/home-banners",
+          "far fa-circle"
+        ),
         new MenuItem(
           this.l("WhyTrainingAzm"),
           "/app/trainingAzm",

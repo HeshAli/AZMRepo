@@ -6,11 +6,11 @@
 		<text name="ContentCategoryNotExist">لا توجد فئة للمحتوي</text>
 		<text name="ContentNotExist">لا يوجد محتوي</text>
 		<text name="FooterNotExist">لا توجد خاتمة</text>
-    <text name="WhyTrainingAzm">لماذا تتدرب مع عزم</text>
+		<text name="WhyTrainingAzm">لماذا تتدرب مع عزم</text>
 		<text name="Roles">الأدوار</text>
 		<text name="Users">المستخدمون</text>
-		<text name="Home">هوم</text>
-		<text name="HomeBanners">لافتة الهوم</text>
+		<text name="Home">الصفحة الرئيسية</text>
+		<text name="HomeBanner">لافتة الصفحة الرئيسية</text>
 		<text name="Name">الأسم باللغة العربية</text>
 		<text name="NameEn">الاسم باللغة الإنجليزية</text>
 		<text name="IsActive">تفعيل</text>
@@ -18,9 +18,22 @@
 		<text name="Create">اضافة</text>
 		<text name="Edit">تعديل</text>
 		<text name="Delete">حذف</text>
-		<text name="Search...">البحث</text>
+		<text name="SearchWithThreeDot">البحث</text>
 		<text name="Total">الإجمالي</text>
 		<text name="admin">الأدمن</text>
-		    <text name="WhyTrainingAzm">لماذا تتدرب مع عزم</text>
+		<text name="NameAr">الاسم باللغة العربية</text>
+		<text name="Image">ارفاق صورة</text>
+		<text name="Draganddropyourimagehereorclicktobrowse">اسحب الصورة وارفقها او تصفح لتختار صورة</text>
+		<text name="UploadImage">ارفاق صورة</text>
+		<text name="Cancel">إلغاء</text>
+		<text name="Save">حفظ</text>
+		<text name="All">الكل</text>
+		<text name="Yes">نشط</text>
+		<text name="No">غير نشط</text>
+		<text name="Search">بحث</text>
+		<text name="Clear">مسح</text>
+		<text name="EditHomeBanner">تعديل لافتة الصفحة الرئيسية</text>
+		<text name="BannerDeleteWarningMessage">سوف يتم حذف لافتة الصفحة الرئيسية</text>
+		<text name="Logo">الشعار</text>
 	</texts>
 </localizationDictionary>

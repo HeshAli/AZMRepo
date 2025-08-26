@@ -1,7 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using AZMAdmin.CMS.Attachments.Dto;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace AZMAdmin.CMS.Attachments
@@ -15,5 +14,6 @@ namespace AZMAdmin.CMS.Attachments
         Task<AttachmentDto> CreateAttachmentAsync(CreateAttachmentDto input);
         Task<AttachmentDto> UpdateAttachmentAsync(UpdateAttachmentDto input);
         Task DeleteAttachmentAsync(EntityDto<int> input);
+        Task<HomeBannerAttachmentsDto> GetHomeBannerAttachments(int? imageId, int? logoId);
     }
 }

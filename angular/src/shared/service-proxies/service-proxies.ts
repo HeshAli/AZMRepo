@@ -320,6 +320,67 @@ export class AttachmentServiceProxy {
     }
 
     /**
+     * @param imageId (optional) 
+     * @param logoId (optional) 
+     * @return OK
+     */
+    getHomeBannerAttachments(imageId: number | undefined, logoId: number | undefined): Observable<HomeBannerAttachmentsDto> {
+        let url_ = this.baseUrl + "/api/services/app/Attachment/GetHomeBannerAttachments?";
+        if (imageId === null)
+            throw new Error("The parameter 'imageId' cannot be null.");
+        else if (imageId !== undefined)
+            url_ += "imageId=" + encodeURIComponent("" + imageId) + "&";
+        if (logoId === null)
+            throw new Error("The parameter 'logoId' cannot be null.");
+        else if (logoId !== undefined)
+            url_ += "logoId=" + encodeURIComponent("" + logoId) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetHomeBannerAttachments(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetHomeBannerAttachments(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<HomeBannerAttachmentsDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<HomeBannerAttachmentsDto>;
+        }));
+    }
+
+    protected processGetHomeBannerAttachments(response: HttpResponseBase): Observable<HomeBannerAttachmentsDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = HomeBannerAttachmentsDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
      * @param body (optional) 
      * @return OK
      */
@@ -1564,6 +1625,64 @@ export class CourseServiceProxy {
         }
         return _observableOf(null as any);
     }
+
+    /**
+     * @return OK
+     */
+    getActiveCourses(): Observable<CourseDto[]> {
+        let url_ = this.baseUrl + "/api/services/app/Course/GetActiveCourses";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetActiveCourses(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetActiveCourses(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<CourseDto[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<CourseDto[]>;
+        }));
+    }
+
+    protected processGetActiveCourses(response: HttpResponseBase): Observable<CourseDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(CourseDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
 }
 
 @Injectable()
@@ -1854,6 +1973,69 @@ export class CourseDetailsServiceProxy {
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param courseId (optional) 
+     * @return OK
+     */
+    getActiveCourses(courseId: number | undefined): Observable<CourseDetailsDto[]> {
+        let url_ = this.baseUrl + "/api/services/app/CourseDetails/GetActiveCourses?";
+        if (courseId === null)
+            throw new Error("The parameter 'courseId' cannot be null.");
+        else if (courseId !== undefined)
+            url_ += "courseId=" + encodeURIComponent("" + courseId) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetActiveCourses(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetActiveCourses(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<CourseDetailsDto[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<CourseDetailsDto[]>;
+        }));
+    }
+
+    protected processGetActiveCourses(response: HttpResponseBase): Observable<CourseDetailsDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(CourseDetailsDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -4819,6 +5001,8 @@ export class CourseDto implements ICourseDto {
     descriptionAr: string | undefined;
     descriptionEn: string | undefined;
     redirectUrl: string | undefined;
+    isActive: boolean;
+    courseId: number;
 
     constructor(data?: ICourseDto) {
         if (data) {
@@ -4837,6 +5021,8 @@ export class CourseDto implements ICourseDto {
             this.descriptionAr = _data["descriptionAr"];
             this.descriptionEn = _data["descriptionEn"];
             this.redirectUrl = _data["redirectUrl"];
+            this.isActive = _data["isActive"];
+            this.courseId = _data["courseId"];
         }
     }
 
@@ -4855,6 +5041,8 @@ export class CourseDto implements ICourseDto {
         data["descriptionAr"] = this.descriptionAr;
         data["descriptionEn"] = this.descriptionEn;
         data["redirectUrl"] = this.redirectUrl;
+        data["isActive"] = this.isActive;
+        data["courseId"] = this.courseId;
         return data;
     }
 
@@ -4873,6 +5061,8 @@ export interface ICourseDto {
     descriptionAr: string | undefined;
     descriptionEn: string | undefined;
     redirectUrl: string | undefined;
+    isActive: boolean;
+    courseId: number;
 }
 
 export class CourseDtoPagedResultDto implements ICourseDtoPagedResultDto {
@@ -5180,6 +5370,8 @@ export class CreateCourseDto implements ICreateCourseDto {
     descriptionAr: string | undefined;
     descriptionEn: string | undefined;
     redirectUrl: string | undefined;
+    isActive: boolean;
+    courseId: number;
 
     constructor(data?: ICreateCourseDto) {
         if (data) {
@@ -5197,6 +5389,8 @@ export class CreateCourseDto implements ICreateCourseDto {
             this.descriptionAr = _data["descriptionAr"];
             this.descriptionEn = _data["descriptionEn"];
             this.redirectUrl = _data["redirectUrl"];
+            this.isActive = _data["isActive"];
+            this.courseId = _data["courseId"];
         }
     }
 
@@ -5214,6 +5408,8 @@ export class CreateCourseDto implements ICreateCourseDto {
         data["descriptionAr"] = this.descriptionAr;
         data["descriptionEn"] = this.descriptionEn;
         data["redirectUrl"] = this.redirectUrl;
+        data["isActive"] = this.isActive;
+        data["courseId"] = this.courseId;
         return data;
     }
 
@@ -5231,6 +5427,8 @@ export interface ICreateCourseDto {
     descriptionAr: string | undefined;
     descriptionEn: string | undefined;
     redirectUrl: string | undefined;
+    isActive: boolean;
+    courseId: number;
 }
 
 export class CreateFooterDto implements ICreateFooterDto {
@@ -5858,6 +6056,53 @@ export interface IGetRoleForEditOutput {
     role: RoleEditDto;
     permissions: FlatPermissionDto[] | undefined;
     grantedPermissionNames: string[] | undefined;
+}
+
+export class HomeBannerAttachmentsDto implements IHomeBannerAttachmentsDto {
+    image: AttachmentDto;
+    logo: AttachmentDto;
+
+    constructor(data?: IHomeBannerAttachmentsDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.image = _data["image"] ? AttachmentDto.fromJS(_data["image"]) : <any>undefined;
+            this.logo = _data["logo"] ? AttachmentDto.fromJS(_data["logo"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): HomeBannerAttachmentsDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new HomeBannerAttachmentsDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["image"] = this.image ? this.image.toJSON() : <any>undefined;
+        data["logo"] = this.logo ? this.logo.toJSON() : <any>undefined;
+        return data;
+    }
+
+    clone(): HomeBannerAttachmentsDto {
+        const json = this.toJSON();
+        let result = new HomeBannerAttachmentsDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IHomeBannerAttachmentsDto {
+    image: AttachmentDto;
+    logo: AttachmentDto;
 }
 
 export class HomeBannerDto implements IHomeBannerDto {
@@ -7130,6 +7375,8 @@ export class UpdateCourseDto implements IUpdateCourseDto {
     descriptionAr: string | undefined;
     descriptionEn: string | undefined;
     redirectUrl: string | undefined;
+    isActive: boolean;
+    courseId: number;
 
     constructor(data?: IUpdateCourseDto) {
         if (data) {
@@ -7148,6 +7395,8 @@ export class UpdateCourseDto implements IUpdateCourseDto {
             this.descriptionAr = _data["descriptionAr"];
             this.descriptionEn = _data["descriptionEn"];
             this.redirectUrl = _data["redirectUrl"];
+            this.isActive = _data["isActive"];
+            this.courseId = _data["courseId"];
         }
     }
 
@@ -7166,6 +7415,8 @@ export class UpdateCourseDto implements IUpdateCourseDto {
         data["descriptionAr"] = this.descriptionAr;
         data["descriptionEn"] = this.descriptionEn;
         data["redirectUrl"] = this.redirectUrl;
+        data["isActive"] = this.isActive;
+        data["courseId"] = this.courseId;
         return data;
     }
 
@@ -7184,6 +7435,8 @@ export interface IUpdateCourseDto {
     descriptionAr: string | undefined;
     descriptionEn: string | undefined;
     redirectUrl: string | undefined;
+    isActive: boolean;
+    courseId: number;
 }
 
 export class UpdateFooterDto implements IUpdateFooterDto {

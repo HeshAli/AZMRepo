@@ -112,7 +112,6 @@
     <text name="PairsDoNotMatch">Do not match</text>
     <text name="All">All</text>
     <text name="TotalRecordsCount">Total: {0}</text>
-    <text name="Search">Search</text>
     <text name="Clear">Clear</text>
     <text name="ResetPasswordStepOneInfo">1. Enter your administrator password</text>
     <text name="ResetPasswordStepTwoInfo">2. Copy this random password so you can send it to the user</text>
@@ -127,5 +126,8 @@
     <text name="ContentNotExist">Content doesn't Exist</text>
     <text name="FooterNotExist">Footer doesn't Exist</text>
     <text name="WhyTrainingAzm">Why Training with Azm</text>
+	<text name="Draganddropyourimagehereorclicktobrowse">Drag and drop your image here or click to browse</text>
+	  <text name="UploadImage">Upload Image</text>
+	  <text name="Logo">Logo</text>
   </texts>
 </localizationDictionary>

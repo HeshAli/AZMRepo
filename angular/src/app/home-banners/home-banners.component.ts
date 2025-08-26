@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Injector } from "@angular/core";
-import { finalize } from "rxjs/operators";
+import { catchError, finalize, map, switchMap } from "rxjs/operators";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 import { appModuleAnimation } from "@shared/animations/routerTransition";
 import {
@@ -10,9 +10,11 @@ import {
   HomeBannerServiceProxy,
   HomeBannerDto,
   HomeBannerDtoPagedResultDto,
+  AttachmentServiceProxy,
 } from "@shared/service-proxies/service-proxies";
 import { CreateHomeBannerDialogComponent } from "./create-home-banner/create-home-banner-dialog/create-home-banner-dialog.component";
 import { EditHomeBannerDialogComponent } from "./edit-home-banner/edit-home-banner-dialog/edit-home-banner-dialog.component";
+import { of } from "rxjs";
 
 class PagedHomeBannersRequestDto extends PagedRequestDto {
   keyword: string;
@@ -28,10 +30,14 @@ export class HomeBannersComponent extends PagedListingComponentBase<HomeBannerDt
   keyword = "";
   isActive: boolean | null = undefined;
   advancedFiltersVisible = false;
-
+  homeBanner: HomeBannerDto = new HomeBannerDto();
+  imagePreview: string | null = null;
+  logoPreview: string | null = null;
+  imageId: number | null = null;
   constructor(
     injector: Injector,
     private _bannerService: HomeBannerServiceProxy,
+    private _attachmentServiceProxy: AttachmentServiceProxy,
     private _modalService: BsModalService,
     cd: ChangeDetectorRef
   ) {
@@ -43,7 +49,7 @@ export class HomeBannersComponent extends PagedListingComponentBase<HomeBannerDt
   }
 
   editBanner(banner: HomeBannerDto): void {
-    this.showCreateOrEditBannerDialog(banner.id);
+    this.showCreateOrEditBannerDialog(banner);
   }
 
   clearFilters(): void {
@@ -88,21 +94,91 @@ export class HomeBannersComponent extends PagedListingComponentBase<HomeBannerDt
     );
   }
 
-  private showCreateOrEditBannerDialog(id?: number): void {
-    let modalRef: BsModalRef;
-
-    if (!id) {
-      modalRef = this._modalService.show(CreateHomeBannerDialogComponent, {
-        class: "modal-lg",
-      });
-    } else {
-      modalRef = this._modalService.show(EditHomeBannerDialogComponent, {
-        class: "modal-lg",
-        initialState: { id },
-      });
+  private showCreateOrEditBannerDialog(row?): void {
+    if (!row) {
+      const modalRef = this._modalService.show(
+        CreateHomeBannerDialogComponent,
+        {
+          class: "modal-lg",
+        }
+      );
+      modalRef.content?.onSave.subscribe(() => this.refresh());
+      return;
     }
 
-    modalRef.content?.onSave.subscribe(() => this.refresh());
+    // Edit flow: get banner, then (optionally) attachments, then open modal once with full data.
+    this._bannerService
+      .getHomeBanner(row.id)
+      .pipe(
+        switchMap((banner) => {
+          this.homeBanner = banner;
+
+          const hasImage = banner?.imageId != null && banner.imageId > 0;
+          const hasLogo = banner?.logoId != null && banner.logoId > 0;
+
+          if (!hasImage && !hasLogo) {
+            // no attachments → just proceed with null previews
+            return of({
+              banner,
+              imagePreview: null,
+              logoPreview: null,
+            });
+          }
+
+          // fetch attachments
+          return this._attachmentServiceProxy
+            .getHomeBannerAttachments(banner.imageId, banner.logoId)
+            .pipe(
+              map((res: any) => {
+                // handle both shapes: res or res.result
+                const data = res && res.image !== undefined ? res : res?.result;
+                const imagePreview = data?.image?.path ?? null;
+                const logoPreview = data?.logo?.path ?? null;
+                return { banner, imagePreview, logoPreview };
+              }),
+              // if attachments call fails, still open modal
+              catchError((_) =>
+                of({ banner, imagePreview: null, logoPreview: null })
+              )
+            );
+        })
+      )
+      .subscribe(({ banner, imagePreview, logoPreview }) => {
+        const modalRef = this._modalService.show(
+          EditHomeBannerDialogComponent,
+          {
+            class: "modal-lg",
+            initialState: {
+              id: row.id,
+              imageId: banner.imageId ?? null,
+              logoId: banner.logoId ?? null,
+              imagePreview,
+              logoPreview,
+              homeBanner: banner,
+            },
+          }
+        );
+        modalRef.content?.onSave.subscribe(() => this.refresh());
+        this.cd.detectChanges();
+      });
+  }
+
+  private getHomeBanner(id: number): void {
+    this._bannerService.getHomeBanner(id).subscribe((result) => {
+      this.homeBanner = result;
+      if (this.homeBanner) {
+        this.getAttachmentById(this.homeBanner.imageId);
+      }
+      this.cd.markForCheck();
+    });
+  }
+  private getAttachmentById(imageId): void {
+    if (imageId) {
+      this._attachmentServiceProxy.getAttachment(imageId).subscribe((res) => {
+        this.imagePreview = res.path;
+        this.cd.markForCheck();
+      });
+    }
   }
 
   trackById(index: number, item: HomeBannerDto): number {

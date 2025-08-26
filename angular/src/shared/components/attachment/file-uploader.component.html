@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-body">
+      <h5 class="card-title">{{ "UploadImage" | localize }}</h5>
+    
+    <div 
+      class="upload-container"
+      [class.dragover]="isDragging"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+      (drop)="onDrop($event)"
+    >
+      <i class="fas fa-cloud-upload-alt upload-icon"></i>
+      <input
+        type="file"
+        class="file-input"
+        id="fileInput"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+      />
+      <p class="upload-text">{{"Draganddropyourimagehereorclicktobrowse" | localize }}</p>
+      <p class="upload-hint">Supports: JPG, PNG, GIF (Max 5MB)</p>
+    </div>
+
+    <div *ngIf="selectedFile" class="selected-file">
+      <i class="fas fa-file-image file-icon"></i>
+      <span class="file-name">{{ selectedFile.name }}</span>
+      <span class="remove-file" (click)="removeFile()">
+        <i class="fas fa-times"></i>
+      </span>
+    </div>
+
+    <div *ngIf="imagePreview" class="preview-container">
+        <h6 class="preview-title">{{ "Preview" | localize }}</h6>
+      <img
+        [src]="imagePreview"
+        alt="Preview"
+        class="preview-image"
+      />
+    </div>
+  </div>
+</div>
