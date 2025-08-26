@@ -19,6 +19,7 @@
 		<text name="Delete">حذف</text>
 		<text name="SearchWithThreeDot">البحث</text>
 		<text name="Total">الإجمالي</text>
+    
 		<text name="NameAr">الاسم باللغة العربية</text>
 		<text name="Image">ارفاق صورة</text>
 		<text name="Draganddropyourimagehereorclicktobrowse">اسحب الصورة وارفقها او تصفح لتختار صورة</text>
@@ -33,6 +34,13 @@
 		<text name="EditHomeBanner">تعديل لافتة الصفحة الرئيسية</text>
 		<text name="BannerDeleteWarningMessage">سوف يتم حذف لافتة الصفحة الرئيسية</text>
 		<text name="Logo">الشعار</text>
+    <text name="admin">الأدمن</text>
+    <text name="DescAr">الوصف باللغة العربية</text>
+    <text name="DescEn">الوصف باللغة الإنجليزية</text> 
+    <text name="TargetAudience">الفئة المستهدفة</text>
+    <text name="ProgressContent">محتوى خطوات التقدم</text>
+    <text name="ProgressSteps">خطوات التقدم</text>
+    <text name="AcceptanceCriteria">معايير القبول</text>
 		<text name="admin">الأدمن</text>
 		<text name="DescAr">الوصف باللغة العربية</text>
 		<text name="DescEn">الوصف باللغة الإنجليزية</text>
