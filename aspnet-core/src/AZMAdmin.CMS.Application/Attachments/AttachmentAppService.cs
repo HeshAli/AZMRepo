@@ -85,7 +85,7 @@ namespace AZMAdmin.CMS.Attachments
             return ObjectMapper.Map<AttachmentDto>(entity);
         }
 
-        public async Task<HomeBannerAttachmentsDto> GetHomeBannerAttachments(int? imageId, int? logoId)
+        public async Task<HomeBannerAttachmentsDto> GetHomeBannerAttachments(int? imageId = null, int? logoId = null)
         {
             var dto = new HomeBannerAttachmentsDto();
 

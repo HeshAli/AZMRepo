@@ -14,6 +14,6 @@ namespace AZMAdmin.CMS.Attachments
         Task<AttachmentDto> CreateAttachmentAsync(CreateAttachmentDto input);
         Task<AttachmentDto> UpdateAttachmentAsync(UpdateAttachmentDto input);
         Task DeleteAttachmentAsync(EntityDto<int> input);
-        Task<HomeBannerAttachmentsDto> GetHomeBannerAttachments(int? imageId, int? logoId);
+        Task<HomeBannerAttachmentsDto> GetHomeBannerAttachments(int? imageId = null, int? logoId = null);
     }
 }

@@ -124,8 +124,8 @@ export class HomeBannersComponent extends PagedListingComponentBase<HomeBannerDt
               logoPreview: null,
             });
           }
-
-          // fetch attachments
+          banner.imageId = banner.imageId ?? 0;
+          banner.logoId = banner.logoId ?? 0;
           return this._attachmentServiceProxy
             .getHomeBannerAttachments(banner.imageId, banner.logoId)
             .pipe(

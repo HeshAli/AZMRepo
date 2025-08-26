@@ -1,6 +1,6 @@
 {
-  "remoteServiceBaseUrl": "https://azmapistg.coe.com.sa",
-  "appBaseUrl": "https://azmstg.coe.com.sa",
+  "remoteServiceBaseUrl": "https://localhost:44311",
+  "appBaseUrl": "http://localhost:4200",
   "localeMappings": [
     {
       "from": "pt-BR",
