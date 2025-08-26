@@ -2,7 +2,7 @@
       autocomplete="off"
       #contentForm="ngForm"
       (ngSubmit)="save()">
-    <abp-modal-header [title]="'ProgressContent' | localize"
+    <abp-modal-header [title]="'Gallery' | localize"
                       (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
     <div class="modal-body">
       
@@ -12,16 +12,16 @@
                         {{ "NameAr" | localize }}
                     </label>
                     <div class="col-md-9">
-                        <textarea type="text"
+                        <input type="text"
                                class="form-control"
                                name="nameAr"
                                id="nameAr"
                                required
                                minlength="2"
-                               
+                         
                                [(ngModel)]="content.nameAr"
                                #nameArModel="ngModel"
-                               #nameArEl ></textarea>
+                               #nameArEl />
                         <abp-validation-summary [control]="nameArModel"
                                                 [controlEl]="nameArEl"></abp-validation-summary>
                     </div>
@@ -31,21 +31,30 @@
                         {{ "NameEn" | localize }}
                     </label>
                     <div class="col-md-9">
-                        <textarea type="text"
+                        <input type="text"
                                class="form-control"
                                name="nameEn"
                                id="nameEn"
                                required
                                minlength="2"
-                              
+                           
                                [(ngModel)]="content.nameEn"
                                #nameEnModel="ngModel"
-                               #nameEnEl ></textarea>
+                               #nameEnEl />
                         <abp-validation-summary [control]="nameEnModel"
                                                 [controlEl]="nameEnEl"></abp-validation-summary>
                     </div>
                 </div>
-<div class="form-check mb-3">
+
+                <div class="form-group row ">
+                    <label class="col-md-3 col-form-label" for="imageUrl"> {{ "Image" | localize }} </label>
+                    <div class="col-md-9">
+                        <app-file-uploader [imagePreview]="imagePreview" (fileSelected)="onFileUploaded($event)"></app-file-uploader>
+
+                    </div>
+               </div>
+
+            <div class="form-check mb-3">
       <input
         id="isActive"
         name="isActive"
@@ -55,9 +64,6 @@
       />
       <label for="isActive" class="form-check-label">{{ l('IsActive') }}</label>
     </div>
-                
-
-            
         
     </div>
     <abp-modal-footer [cancelDisabled]="saving"

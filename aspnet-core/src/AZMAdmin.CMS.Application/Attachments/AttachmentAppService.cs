@@ -29,9 +29,17 @@ namespace AZMAdmin.CMS.Attachments
             _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
         }
-        public async Task<AttachmentDto> UploadAttachment(IFormFile imageFile)
+        public async Task<AttachmentDto> UploadAttachment(IFormFile imageFile, string category)
         {
-            var uploadPath = Path.Combine(_env.WebRootPath, "attachments");
+            if (imageFile == null || imageFile.Length == 0)
+                throw new ArgumentException("Invalid file");
+
+            var validCategories = new[] { "homeBanner", "gallery" };
+            var safeCategory = validCategories.Contains(category) ? category : "";
+
+            var uploadPath = string.IsNullOrEmpty(safeCategory)
+                ? Path.Combine(_env.WebRootPath, "attachments")
+                : Path.Combine(_env.WebRootPath, "attachments", safeCategory);
 
             if (!Directory.Exists(uploadPath))
                 Directory.CreateDirectory(uploadPath);
@@ -40,7 +48,6 @@ namespace AZMAdmin.CMS.Attachments
             var extension = Path.GetExtension(imageFile.FileName);
 
             var safeName = string.Concat(originalName.Split(Path.GetInvalidFileNameChars())).Replace(" ", "_");
-
             var uniqueId = Guid.NewGuid().ToString("N").Substring(0, 8);
             var fileName = $"{safeName}_{uniqueId}{extension}";
 
@@ -54,18 +61,24 @@ namespace AZMAdmin.CMS.Attachments
             var request = _httpContextAccessor.HttpContext.Request;
             var baseUrl = $"{request.Scheme}://{request.Host}";
 
+            var relativePath = string.IsNullOrEmpty(safeCategory)
+                ? $"attachments/{fileName}"
+                : $"attachments/{safeCategory}/{fileName}";
+
             var attachment = new Attachment
             {
                 Extension = extension,
-                Path = $"{baseUrl}/attachments/{fileName}",
+                Path = $"{baseUrl}/{relativePath}",
                 FullPath = filePath,
                 IsActive = true
             };
+
             await _repository.InsertAsync(attachment);
             await CurrentUnitOfWork.SaveChangesAsync();
 
             return _mapper.Map<Attachment, AttachmentDto>(attachment);
         }
+
         public async Task ActivateDeactivateAttachment(int id)
         {
             var attachment = await _repository.FirstOrDefaultAsync(id);

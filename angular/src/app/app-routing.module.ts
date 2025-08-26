@@ -34,6 +34,15 @@ import { AppComponent } from "./app.component";
             canActivate: [AppRouteGuard],
           },
           {
+            path: "home-gallery",
+            loadChildren: () =>
+              import("./home-gallery/home-gallery.module").then(
+                (m) => m.HomeGalleryModule
+              ),
+            /*  data: { permission: 'Pages.Roles' },*/
+            canActivate: [AppRouteGuard],
+          },
+          {
             path: "trainingAzm",
             loadChildren: () =>
               import("./home-trainingAzm/home-trainingAzm.module").then(

@@ -7,7 +7,7 @@ namespace AZMAdmin.CMS.Attachments
 {
     public interface IAttachmentAppService
     {
-        Task<AttachmentDto> UploadAttachment(IFormFile imageFile);
+        Task<AttachmentDto> UploadAttachment(IFormFile imageFile, string category);
         Task ActivateDeactivateAttachment(int id);
 
         Task<AttachmentDto> GetAttachmentAsync(EntityDto<int> input); 

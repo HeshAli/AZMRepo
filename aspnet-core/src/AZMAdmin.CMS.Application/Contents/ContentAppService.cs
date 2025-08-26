@@ -96,6 +96,7 @@ namespace AZMAdmin.CMS.Contents
             var entity = ObjectMapper.Map<Content>(input);
             entity.ContentCategoryId = currentCategory.Id;
             entity.IsActive = entity.IsActive ?? true;
+            entity.AttachmentId = input.AttachmentId;
 
             var id = await _repo.InsertAndGetIdAsync(entity);
             await CurrentUnitOfWork.SaveChangesAsync();

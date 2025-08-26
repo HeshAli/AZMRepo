@@ -86,7 +86,7 @@ export class CreateHomeBannerDialogComponent
       fileName: file.name,
     };
     this._attachmentServiceProxy
-      .uploadAttachment(fileParam)
+      .uploadAttachment("homeBanner", fileParam)
       .pipe(
         finalize(() => {
           this.saving = false;
@@ -98,7 +98,6 @@ export class CreateHomeBannerDialogComponent
           this.notify.success(this.l("UploadedSuccessfully"));
           this.banner.imageId = response.id;
           this.imagePreview = response.path;
-          //  this.banner.logoId= response.logoId
         },
         error: (error) => {
           console.error("Upload error:", error);
@@ -117,7 +116,7 @@ export class CreateHomeBannerDialogComponent
       fileName: file.name,
     };
     this._attachmentServiceProxy
-      .uploadAttachment(fileParam)
+      .uploadAttachment("homeBanner", fileParam)
       .pipe(
         finalize(() => {
           this.saving = false;

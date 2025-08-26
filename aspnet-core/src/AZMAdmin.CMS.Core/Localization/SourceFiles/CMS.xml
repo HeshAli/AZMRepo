@@ -138,5 +138,9 @@
 	  <text name="AcceptanceCriteria">Acceptance Criteria</text>
     <text name="Courses">Courses</text>
     <text name="CourseContent">Course Content</text>
+	  <text name="Gallery">Gallery</text>
+	  <text name="CreateGallery">Create Gallery Image</text>
+	  <text name="EditGallery">Edit Gallery Image</text>
+	  <text name="GalleryImageDeleteWarningMessage">Gallery image will be deleted</text>
   </texts>
 </localizationDictionary>

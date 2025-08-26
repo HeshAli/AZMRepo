@@ -153,11 +153,16 @@ export class AttachmentServiceProxy {
     }
 
     /**
+     * @param category (optional) 
      * @param imageFile (optional) 
      * @return OK
      */
-    uploadAttachment(imageFile: FileParameter | undefined): Observable<AttachmentDto> {
-        let url_ = this.baseUrl + "/api/services/app/Attachment/UploadAttachment";
+    uploadAttachment(category: string | undefined, imageFile: FileParameter | undefined): Observable<AttachmentDto> {
+        let url_ = this.baseUrl + "/api/services/app/Attachment/UploadAttachment?";
+        if (category === null)
+            throw new Error("The parameter 'category' cannot be null.");
+        else if (category !== undefined)
+            url_ += "category=" + encodeURIComponent("" + category) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = new FormData();

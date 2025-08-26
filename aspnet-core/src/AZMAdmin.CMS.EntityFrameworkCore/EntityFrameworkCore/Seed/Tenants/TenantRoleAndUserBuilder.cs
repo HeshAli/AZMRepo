@@ -108,6 +108,22 @@ namespace AZMAdmin.CMS.EntityFrameworkCore.Seed.Tenants
                 _context.SaveChanges();
             }
 
+            var categoryGallery = _context.ContentCategories.IgnoreQueryFilters().FirstOrDefault(u => u.Code == "Home_Gallery");
+            if (categoryGallery == null)
+            {
+                var CatAzm = new ContentCategory()
+                {
+                    Code = "Home_Gallery",
+                    IsActive = true,
+                    NameAr = "معرض الصور للصفحة الرئيسية",
+                    NameEn = "Home Gallery"
+
+                };
+
+                _context.ContentCategories.Add(CatAzm);
+                _context.SaveChanges();
+            }
+
             var categoryTargetAudience = _context.ContentCategories.IgnoreQueryFilters().FirstOrDefault(u => u.Code == "Home_TargetAudience");
             if (categoryTargetAudience == null)
             {
