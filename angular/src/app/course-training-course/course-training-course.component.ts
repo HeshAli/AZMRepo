@@ -13,28 +13,30 @@ import {
   ContentDto,
   ContentServiceProxy,
   ContentDtoPagedResultDto,
+  CourseServiceProxy,
+  CourseDtoPagedResultDto,
+  CourseDto,
 } from "../../shared/service-proxies/service-proxies";
-import { CreateCourseGeneralObjectiveComponent } from "./create-course-general-objective/create-course-general-objective.component";
-import { EditCourseGeneralObjectiveComponent } from "./edit-course-general-objective/edit-course-general-objective.component";
-
+import { CreateCourseTrainingComponent } from "./create-course-training-course/create-course-training-course.component";
+import { EditCourseTrainingComponent } from "./edit-course-training-course/edit-course-training-course.component";
 class PagedUserContentRequestDto extends PagedRequestDto {
   keyword: string;
   isActive: boolean | null;
 }
 
 @Component({
-  templateUrl: "./course-general-objective.component.html",
+  templateUrl: "./course-training-course.component.html",
   animations: [appModuleAnimation()],
 })
-export class CourseGeneralObjectiveComponent extends PagedListingComponentBase<ContentDto> {
-  objectives: ContentDto[] = [];
+export class TrainingCoursesComponent extends PagedListingComponentBase<ContentDto> {
+  courses: CourseDto[] = [];
   keyword = "";
   isActive: boolean | null = undefined;
   advancedFiltersVisible = false;
 
   constructor(
     injector: Injector,
-    private _contentServiceProxy: ContentServiceProxy,
+    private _coursesServiceProxy: CourseServiceProxy,
     private _modalService: BsModalService,
     cd: ChangeDetectorRef
   ) {
@@ -60,18 +62,11 @@ export class CourseGeneralObjectiveComponent extends PagedListingComponentBase<C
     pageNumber: number,
     finishedCallback: () => void
   ): void {
-    this._contentServiceProxy
-      .getContentList(
-        this.keyword,
-        this.isActive ?? undefined,
-        undefined,
-        "Course_GeneralObjectives",
-        request.skipCount,
-        request.maxResultCount
-      )
+    this._coursesServiceProxy
+      .getCourseList(this.keyword, request.skipCount, request.maxResultCount)
       .pipe(finalize(() => finishedCallback()))
-      .subscribe((result: ContentDtoPagedResultDto) => {
-        this.objectives = result.items || [];
+      .subscribe((result: CourseDtoPagedResultDto) => {
+        this.courses = result.items || [];
         this.showPaging(result, pageNumber);
         this.cd.detectChanges();
       });
@@ -80,11 +75,11 @@ export class CourseGeneralObjectiveComponent extends PagedListingComponentBase<C
   protected delete(banner: ContentDto): void {
     const displayName = banner.nameAr || "";
     abp.message.confirm(
-      this.l("GeneralObjectiveDeleteWarningMessage", displayName),
+      this.l("TrainingUnitDeleteWarningMessage", displayName),
       undefined,
       (confirmed: boolean) => {
         if (confirmed) {
-          this._contentServiceProxy.deleteContent(banner.id).subscribe(() => {
+          this._coursesServiceProxy.deleteCourse(banner.id).subscribe(() => {
             abp.notify.success(this.l("SuccessfullyDeleted"));
             this.refresh();
           });
@@ -97,14 +92,11 @@ export class CourseGeneralObjectiveComponent extends PagedListingComponentBase<C
     let modalRef: BsModalRef;
 
     if (!id) {
-      modalRef = this._modalService.show(
-        CreateCourseGeneralObjectiveComponent,
-        {
-          class: "modal-lg",
-        }
-      );
+      modalRef = this._modalService.show(CreateCourseTrainingComponent, {
+        class: "modal-lg",
+      });
     } else {
-      modalRef = this._modalService.show(EditCourseGeneralObjectiveComponent, {
+      modalRef = this._modalService.show(EditCourseTrainingComponent, {
         class: "modal-lg",
         initialState: { id },
       });

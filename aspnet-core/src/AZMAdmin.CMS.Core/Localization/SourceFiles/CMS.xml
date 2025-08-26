@@ -152,5 +152,10 @@
 	  <text name="CreateGeneralObjectives">Create General Objectives</text>
 	  <text name="EditGeneralObjectives">Edit General Objectives</text>
 	  <text name="GeneralObjectives">General Objectives</text>
+	  <text name="EditTrainingCourses">Edit Training Unit</text>
+	  <text name="TrainingCourses">Training Units</text>
+	  <text name="CreateTrainingCourses">Create Training Unit</text>
+	  <text name="TrainingUnitDeleteWarningMessage">The training unit will be deleted</text>
+	  <text name="GeneralObjectiveDeleteWarningMessage">The general objective will be deleted</text>
   </texts>
 </localizationDictionary>
