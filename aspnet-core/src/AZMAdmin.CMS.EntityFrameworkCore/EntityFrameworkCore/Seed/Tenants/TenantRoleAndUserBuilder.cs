@@ -124,6 +124,22 @@ namespace AZMAdmin.CMS.EntityFrameworkCore.Seed.Tenants
                 _context.SaveChanges();
             }
 
+            var categoryGeneralObjectives = _context.ContentCategories.IgnoreQueryFilters().FirstOrDefault(u => u.Code == "Course_GeneralObjectives");
+            if (categoryGeneralObjectives == null)
+            {
+                var CatAzm = new ContentCategory()
+                {
+                    Code = "Course_GeneralObjectives",
+                    IsActive = true,
+                    NameAr = "الأهداف العامة",
+                    NameEn = "General Objectives"
+
+                };
+
+                _context.ContentCategories.Add(CatAzm);
+                _context.SaveChanges();
+            }
+
             var categoryTargetAudience = _context.ContentCategories.IgnoreQueryFilters().FirstOrDefault(u => u.Code == "Home_TargetAudience");
             if (categoryTargetAudience == null)
             {

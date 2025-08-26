@@ -142,5 +142,8 @@
 	  <text name="CreateGallery">Create Gallery Image</text>
 	  <text name="EditGallery">Edit Gallery Image</text>
 	  <text name="GalleryImageDeleteWarningMessage">Gallery image will be deleted</text>
+	  <text name="CreateGeneralObjectives">Create General Objectives</text>
+	  <text name="EditGeneralObjectives">Edit General Objectives</text>
+	  <text name="GeneralObjectives">General Objectives</text>
   </texts>
 </localizationDictionary>

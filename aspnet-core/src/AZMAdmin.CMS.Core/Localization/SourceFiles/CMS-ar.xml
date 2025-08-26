@@ -48,5 +48,8 @@
 		<text name="CreateGallery">انشاء صورة</text>
 		<text name="EditGallery">تعديل صورة</text>
 		<text name="GalleryImageDeleteWarningMessage">سوف يتم حذف صورة المعرض</text>
+		<text name="CreateGeneralObjectives">انشاء الأهداف العامة</text>
+		<text name="EditGeneralObjectives">تعديل الأهداف العامة</text>
+		<text name="GeneralObjectives">الأهداف العامة</text>
 	</texts>
 </localizationDictionary>
