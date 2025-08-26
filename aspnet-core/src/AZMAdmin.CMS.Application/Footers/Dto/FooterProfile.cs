@@ -6,7 +6,9 @@ namespace AZMAdmin.CMS.Footers.Dto
     {
         public FooterProfile()
         {
-            CreateMap<FooterDto, Footer>().ReverseMap();
+            CreateMap<Footer, FooterDto>();
+            CreateMap<CreateFooterDto, Footer>();
+            CreateMap<UpdateFooterDto, Footer>();
         }
     }
 }

@@ -136,5 +136,7 @@
 	  <text name="TargetAudience">Target Audience</text>
 	  <text name="ProgressSteps">Progress Steps</text>
 	  <text name="AcceptanceCriteria">Acceptance Criteria</text>
+    <text name="Courses">Courses</text>
+    <text name="CourseContent">Course Content</text>
   </texts>
 </localizationDictionary>

@@ -5,6 +5,7 @@ namespace AZMAdmin.CMS.Footers
 {
     public class Footer : FullAuditedEntity<int>
     {
+        public string Code { get; set; }
         public string NameAr { get; set; }
         public string NameEn { get; set; }
         public string DescriptionAr { get; set; }

@@ -78,6 +78,15 @@ import { AppComponent } from "./app.component";
                 /*  data: { permission: 'Pages.Roles' },*/
                 canActivate: [AppRouteGuard],
             },
+            {
+                path: "courseContent",
+                loadChildren: () =>
+                    import("./course-Content/course-Content.module").then(
+                        (m) => m.CourseContentModule
+                    ),
+                /*  data: { permission: 'Pages.Roles' },*/
+                canActivate: [AppRouteGuard],
+            },
           {
             path: "roles",
             loadChildren: () =>
