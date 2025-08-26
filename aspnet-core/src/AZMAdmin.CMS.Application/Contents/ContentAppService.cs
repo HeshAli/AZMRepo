@@ -74,6 +74,10 @@ namespace AZMAdmin.CMS.Contents
                 {
                     query = query.Where(s => s.ContentCategoryId == filterCat.Id);
                 }
+                else
+                {
+                    return new PagedResultDto<ContentDto>(0, new List<ContentDto>());
+                }
             }
             var totalCount = await query.CountAsync();
             query = query.OrderByDescending(x => x.CreationTime);

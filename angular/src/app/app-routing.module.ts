@@ -50,43 +50,52 @@ import { AppComponent } from "./app.component";
               ),
             /*  data: { permission: 'Pages.Roles' },*/
             canActivate: [AppRouteGuard],
-          },
-          {
-            path: "targetAudience",
-            loadChildren: () =>
-              import("./home-targetAudience/home-targetAudience.module").then(
-                (m) => m.TargetAudienceModule
-              ),
-            /*  data: { permission: 'Pages.Roles' },*/
-            canActivate: [AppRouteGuard],
-          },
-          {
-            path: "progressContent",
-            loadChildren: () =>
-              import("./home-progressContent/home-progressContent.module").then(
-                (m) => m.ProgressContentModule
-              ),
-            /*  data: { permission: 'Pages.Roles' },*/
-            canActivate: [AppRouteGuard],
-          },
-          {
-            path: "progressSteps",
-            loadChildren: () =>
-              import("./home-progressSteps/home-progressSteps.module").then(
-                (m) => m.ProgressStepsModule
-              ),
-            /*  data: { permission: 'Pages.Roles' },*/
-            canActivate: [AppRouteGuard],
-          },
-          {
-            path: "acceptanceCriteria",
-            loadChildren: () =>
-              import(
-                "./home-acceptanceCriteria/home-acceptanceCriteria.module"
-              ).then((m) => m.AcceptanceCriteriaModule),
-            /*  data: { permission: 'Pages.Roles' },*/
-            canActivate: [AppRouteGuard],
-          },
+            },
+            {
+                path: "targetAudience",
+                loadChildren: () =>
+                    import("./home-targetAudience/home-targetAudience.module").then(
+                        (m) => m.TargetAudienceModule
+                    ),
+                /*  data: { permission: 'Pages.Roles' },*/
+                canActivate: [AppRouteGuard],
+            },
+            {
+                path: "progressContent",
+                loadChildren: () =>
+                    import("./home-progressContent/home-progressContent.module").then(
+                        (m) => m.ProgressContentModule
+                    ),
+                /*  data: { permission: 'Pages.Roles' },*/
+                canActivate: [AppRouteGuard],
+            },
+            {
+                path: "progressSteps",
+                loadChildren: () =>
+                    import("./home-progressSteps/home-progressSteps.module").then(
+                        (m) => m.ProgressStepsModule
+                    ),
+                /*  data: { permission: 'Pages.Roles' },*/
+                canActivate: [AppRouteGuard],
+            },
+            {
+                path: "acceptanceCriteria",
+                loadChildren: () =>
+                    import("./home-acceptanceCriteria/home-acceptanceCriteria.module").then(
+                        (m) => m.AcceptanceCriteriaModule
+                    ),
+                /*  data: { permission: 'Pages.Roles' },*/
+                canActivate: [AppRouteGuard],
+            },
+            {
+                path: "courseContent",
+                loadChildren: () =>
+                    import("./course-Content/course-Content.module").then(
+                        (m) => m.CourseContentModule
+                    ),
+                /*  data: { permission: 'Pages.Roles' },*/
+                canActivate: [AppRouteGuard],
+            },
           {
             path: "roles",
             loadChildren: () =>

@@ -41,6 +41,8 @@
 		<text name="ProgressContent">محتوى خطوات التقدم</text>
 		<text name="ProgressSteps">خطوات التقدم</text>
 		<text name="AcceptanceCriteria">معايير القبول</text>
+    <text name="Courses">البرامج التدريبية</text>
+    <text name="CourseContent">محتوى البرامج التدريبية</text>
 		<text name="CreateHomeBanner">انشاء لافتة الصفحة الرئيسية</text>
 		<text name="Gallery">معرض الصور</text>
 		<text name="CreateGallery">انشاء صورة</text>
