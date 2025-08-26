@@ -2,14 +2,14 @@
       autocomplete="off"
       #contentForm="ngForm"
       (ngSubmit)="save()">
-    <abp-modal-header [title]="'ProgressSteps' | localize"
+    <abp-modal-header [title]="'Question' | localize"
                       (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
     <div class="modal-body">
 
 
         <div class="form-group row required">
             <label class="col-md-3 col-form-label" for="name">
-                {{ "NameAr" | localize }}
+                {{ "QuestionAr" | localize }}
             </label>
             <div class="col-md-9">
                 <input type="text"
@@ -27,7 +27,7 @@
         </div>
         <div class="form-group row required">
             <label class="col-md-3 col-form-label" for="displayName">
-                {{ "NameEn" | localize }}
+                {{ "QuestionEn" | localize }}
             </label>
             <div class="col-md-9">
                 <input type="text"
@@ -46,7 +46,7 @@
 
         <div class="form-group row required">
             <label class="col-md-3 col-form-label" for="name">
-                {{ "DescAr" | localize }}
+                {{ "AnswerAr" | localize }}
             </label>
             <div class="col-md-9">
                 <input type="text"
@@ -64,7 +64,7 @@
         </div>
         <div class="form-group row required">
             <label class="col-md-3 col-form-label" for="displayName">
-                {{ "DescEn" | localize }}
+                {{ "AnswerEn" | localize }}
             </label>
             <div class="col-md-9">
                 <input type="text"

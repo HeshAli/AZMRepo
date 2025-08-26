@@ -1,4 +1,7 @@
 ﻿using Abp.Domain.Entities.Auditing;
+using AZMAdmin.CMS.Attachments;
+using AZMAdmin.CMS.ContentCategories;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AZMAdmin.CMS.Contents
 {
@@ -12,5 +15,10 @@ namespace AZMAdmin.CMS.Contents
         public bool? IsActive { get; set; }
         public int? ContentCategoryId { get; set; }
         public int? AttachmentId { get; set; }
+        [ForeignKey(nameof(AttachmentId))]
+        public virtual Attachment Attachment { get; set; }
+
+        [ForeignKey(nameof(ContentCategoryId))]
+        public virtual ContentCategory ContentCategory { get; set; }
     }
 }

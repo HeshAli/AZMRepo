@@ -57,6 +57,18 @@ namespace AZMAdmin.CMS.CoursesDetails
             return ObjectMapper.Map<CourseDetailsDto>(created);
         }
 
+        public async Task<bool> CreateListCourseDetailsAsync(List< CreateCourseDetailsDto> inputs)
+        {
+            foreach (var input in inputs)
+            {
+                var entity = ObjectMapper.Map<CourseDetails>(input);
+
+                var id = await _repo.InsertAndGetIdAsync(entity);
+                await CurrentUnitOfWork.SaveChangesAsync(); 
+            }
+           return true;
+        }
+
         public async Task<CourseDetailsDto> UpdateCourseDetailsAsync(UpdateCourseDetailsDto input)
         {
             var entity = await _repo.FirstOrDefaultAsync(input.Id);

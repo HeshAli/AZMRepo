@@ -3,32 +3,40 @@
 </div>
 
 <div class="modal-body">
-  <form>
-    <div class="form-group">  
-      <label>{{ l('NameAr') }}</label>
-      <input class="form-control" [(ngModel)]="banner.nameAr" name="nameAr" />
-    </div>
-    <div class="form-group">
-      <label>{{ l('NameEn') }}</label>
-      <input class="form-control" [(ngModel)]="banner.nameEn" name="nameEn"/>
-    </div>
+    <form>
+        <div class="form-group">
+            <label>{{ l('NameAr') }}</label>
+            <input class="form-control" [(ngModel)]="banner.nameAr" name="nameAr" />
+        </div>
+        <div class="form-group">
+            <label>{{ l('NameEn') }}</label>
+            <input class="form-control" [(ngModel)]="banner.nameEn" name="nameEn" />
+        </div>
 
-<div class="form-group row ">
-       <label class="col-md-3 col-form-label" for="imageUrl"> {{ "Image" | localize }} </label>
-       <div class="col-md-9">
-           <app-file-uploader [imagePreview]="imagePreview" (fileSelected)="onFileUploaded($event)"></app-file-uploader>
+        <div class="form-group row ">
+            <label class="col-md-3 col-form-label" for="imageUrl"> {{ "Image" | localize }} </label>
+            <div class="col-md-9">
+                <app-file-uploader [imagePreview]="imagePreview" (fileSelected)="onFileUploaded($event)"></app-file-uploader>
 
-       </div>
-   </div>
-<div class="form-group row ">
-       <label class="col-md-3 col-form-label" for="logoUrl"> {{ "Logo" | localize }} </label>
-       <div class="col-md-9">
-           <app-file-uploader [imagePreview]="logoPreview" (fileSelected)="onLogoUploaded($event)"></app-file-uploader>
+            </div>
+        </div>
+        <div class="form-group row ">
+            <label class="col-md-3 col-form-label" for="logoUrl"> {{ "Logo" | localize }} </label>
+            <div class="col-md-9">
+                <app-file-uploader [imagePreview]="logoPreview" (fileSelected)="onLogoUploaded($event)"></app-file-uploader>
 
-       </div>
-   </div>
+            </div>
+        </div>
 
-  </form>
+        <div class="form-check mb-3">
+            <input id="isActive"
+                   name="isActive"
+                   type="checkbox"
+                   class="form-check-input"
+                   [(ngModel)]="banner.isActive" />
+            <label for="isActive" class="form-check-label">{{ l('IsActive') }}</label>
+        </div>
+    </form>
 </div>
 
 <div class="modal-footer">

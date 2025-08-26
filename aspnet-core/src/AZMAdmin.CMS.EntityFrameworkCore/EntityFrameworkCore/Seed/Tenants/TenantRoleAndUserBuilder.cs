@@ -253,7 +253,21 @@ namespace AZMAdmin.CMS.EntityFrameworkCore.Seed.Tenants
                 _context.Contents.Add(content);
                 _context.SaveChanges();
             }
+            var categoryQuestions = _context.ContentCategories.IgnoreQueryFilters().FirstOrDefault(u => u.Code == "Questions");
+            if (categoryQuestions == null)
+            {
+                var CatAzm = new ContentCategory()
+                {
+                    Code = "Questions",
+                    IsActive = true,
+                    NameAr = "الأسئلة الشائعة",
+                    NameEn = "General questions"
 
+                };
+
+                _context.ContentCategories.Add(CatAzm);
+                _context.SaveChanges(); 
+            }
 
             var languages = _context.Languages.IgnoreQueryFilters().Where(u => u.Name != "en" && u.Name != "ar").ToList();
             if (languages.Any())
