@@ -237,6 +237,41 @@ namespace AZMAdmin.CMS.EntityFrameworkCore.Seed.Tenants
                 _context.Contents.Add(content);
                 _context.SaveChanges();
             }
+
+
+            var categoryAboutUs = _context.ContentCategories.IgnoreQueryFilters().FirstOrDefault(u => u.Code == "AboutUs");
+            if (categoryAboutUs == null)
+            {
+                var CatAzm = new ContentCategory()
+                {
+                    Code = "AboutUs",
+                    IsActive = true,
+                    NameAr = "عن عزم",
+                    NameEn = "About Azm"
+
+                };
+
+                _context.ContentCategories.Add(CatAzm);
+                _context.SaveChanges();
+                categoryAboutUs = CatAzm;
+            }
+
+            var ContentaboutUs = _context.Contents.IgnoreQueryFilters().FirstOrDefault(u => u.ContentCategoryId == categoryAboutUs.Id);
+            if (ContentaboutUs == null)
+            {
+                var content = new Content()
+                {
+                    ContentCategoryId = categoryAboutUs.Id,
+                    IsActive = true,
+                    NameAr = "منصّة تعليمية متكاملة تهدف إلى تمكين الأفراد وتنمية قدراتهم من خلال تقديم مجموعة متخصّصة ومتميّزة من البرامج التدريبية، بما في ذلك «هندسة المواقع الإلكترونية» و«إدارة الفعاليات». تتميّز المنصّة بما يلي:",
+                    NameEn = "A comprehensive educational platform aiming to empower individuals and develop their skills by offering a specialized and distinguished set of training programs, including \"Website Engineering\" and \"Event Management.\" The platform is distinguished by the following:"
+
+                };
+
+                _context.Contents.Add(content);
+                _context.SaveChanges();
+            }
+
             var categoryQuestions = _context.ContentCategories.IgnoreQueryFilters().FirstOrDefault(u => u.Code == "Questions");
             if (categoryQuestions == null)
             {

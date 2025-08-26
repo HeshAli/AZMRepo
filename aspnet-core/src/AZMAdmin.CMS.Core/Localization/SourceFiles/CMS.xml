@@ -147,5 +147,7 @@
     <text name="QuestionEn">English Question</text>
     <text name="AnswerAr">Arabic Answer</text>
     <text name="AnswerEn">English Answer</text>
+    <text name="AboutAzm">About Azm</text>
+    <text name="AboutAzmContent">About Azm Content</text>
   </texts>
 </localizationDictionary>

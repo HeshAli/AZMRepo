@@ -53,5 +53,7 @@
     <text name="QuestionEn">السؤال باللغة الإنجليزية</text>
     <text name="AnswerAr">الإجابة باللغة العربية</text>
     <text name="AnswerEn">الإجابة باللغة الإنجليزية</text>
+    <text name="AboutAzm">عن عزم</text>
+    <text name="AboutAzmContent">محتوى عن عزم</text>
 	</texts>
 </localizationDictionary>
