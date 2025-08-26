@@ -11,6 +11,13 @@
 		<text name="Users">المستخدمون</text>
 		<text name="Home">الصفحة الرئيسية</text>
 		<text name="HomeBanner">لافتة الصفحة الرئيسية</text>
+		<text name="Name">الأسم باللغة العربية</text>
+		<text name="FooterNotExist">لا توجد خاتمة</text>
+		<text name="Roles">الأدوار</text>
+		<text name="Users">المستخدمون</text>
+		<text name="Home">هوم</text>
+		<text name="HomeBanners">لافتة الهوم</text>
+		<text name="NameAr">الأسم باللغة العربية</text>
 		<text name="NameEn">الاسم باللغة الإنجليزية</text>
 		<text name="IsActive">تفعيل</text>
 		<text name="Actions">الخيارات</text>
@@ -19,7 +26,7 @@
 		<text name="Delete">حذف</text>
 		<text name="SearchWithThreeDot">البحث</text>
 		<text name="Total">الإجمالي</text>
-    
+		<text name="admin">الأدمن</text>
 		<text name="NameAr">الاسم باللغة العربية</text>
 		<text name="Image">ارفاق صورة</text>
 		<text name="Draganddropyourimagehereorclicktobrowse">اسحب الصورة وارفقها او تصفح لتختار صورة</text>
@@ -34,16 +41,10 @@
 		<text name="EditHomeBanner">تعديل لافتة الصفحة الرئيسية</text>
 		<text name="BannerDeleteWarningMessage">سوف يتم حذف لافتة الصفحة الرئيسية</text>
 		<text name="Logo">الشعار</text>
-    <text name="admin">الأدمن</text>
-    <text name="DescAr">الوصف باللغة العربية</text>
-    <text name="DescEn">الوصف باللغة الإنجليزية</text> 
-    <text name="TargetAudience">الفئة المستهدفة</text>
-    <text name="ProgressContent">محتوى خطوات التقدم</text>
-    <text name="ProgressSteps">خطوات التقدم</text>
-    <text name="AcceptanceCriteria">معايير القبول</text>
 		<text name="admin">الأدمن</text>
 		<text name="DescAr">الوصف باللغة العربية</text>
 		<text name="DescEn">الوصف باللغة الإنجليزية</text>
+		<text name="WhyTrainingAzm">لماذا تتدرب مع عزم</text>
 		<text name="TargetAudience">الفئة المستهدفة</text>
 		<text name="ProgressContent">محتوى خطوات التقدم</text>
 		<text name="ProgressSteps">خطوات التقدم</text>
