@@ -61,12 +61,20 @@ namespace AZMAdmin.CMS.Contents
         public async Task<PagedResultDto<ContentDto>> GetContentListAsync(PagedContentResultRequestDto input)
         {
             // Example filters (adjust to your DTO)
+          
             var query = _repo.GetAll()
                 .WhereIf(!string.IsNullOrWhiteSpace(input.Filter),
                     x => x.NameAr.Contains(input.Filter) || x.NameEn.Contains(input.Filter))
                 .WhereIf(input.IsActive.HasValue, x => x.IsActive == input.IsActive)
                 .WhereIf(input.ContentCategoryId.HasValue, x => x.ContentCategoryId == input.ContentCategoryId).AsQueryable();
-
+            if (!string.IsNullOrEmpty(input.CategoryCode))
+            {
+                var filterCat =await _Catrepo.FirstOrDefaultAsync(s => s.Code == input.CategoryCode);
+                if (filterCat !=null)
+                {
+                    query = query.Where(s => s.ContentCategoryId == filterCat.Id);
+                }
+            }
             var totalCount = await query.CountAsync();
             query = query.OrderByDescending(x => x.CreationTime);
                      

@@ -1,26 +1,95 @@
-<div class="modal-header">
-  <h4 class="modal-title">{{ l('CreateHomeBanner') }}</h4>
-</div>
+<form class="form-horizontal"
+      autocomplete="off"
+      #contentForm="ngForm"
+      (ngSubmit)="save()">
+    <abp-modal-header [title]="'WhyTrainingAzm' | localize"
+                      (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+    <div class="modal-body">
+       
 
-<div class="modal-body">
-  <form>
-    <!-- Example: adjust fields according to your HomeBannerDto -->
-    <div class="form-group">
-      <label>{{ l('NameAr') }}</label>
-      <input class="form-control" [(ngModel)]="banner.nameAr" name="nameAr" />
-    </div>
-    <div class="form-group">
-      <label>{{ l('NameEn') }}</label>
-      <input class="form-control" [(ngModel)]="banner.nameEn" name="nameEn"/>
-    </div>
-  </form>
-</div>
+            <div class="form-group row required">
+                <label class="col-md-3 col-form-label" for="name">
+                    {{ "NameAr" | localize }}
+                </label>
+                <div class="col-md-9">
+                    <input type="text"
+                           class="form-control"
+                           name="nameAr"
+                           id="nameAr"
+                           required
+                           minlength="2"
+                     
+                           [(ngModel)]="content.nameAr"
+                           #nameArModel="ngModel"
+                           #nameArEl />
+                    <abp-validation-summary [control]="nameArModel"
+                                            [controlEl]="nameArEl"></abp-validation-summary>
+                </div>
+            </div>
+            <div class="form-group row required">
+                <label class="col-md-3 col-form-label" for="displayName">
+                    {{ "NameEn" | localize }}
+                </label>
+                <div class="col-md-9">
+                    <input type="text"
+                           class="form-control"
+                           name="nameEn"
+                           id="nameEn"
+                           required
+                           minlength="2"
+                      
+                           [(ngModel)]="content.nameEn"
+                           #nameEnModel="ngModel"
+                           #nameEnEl />
+                    <abp-validation-summary [control]="nameEnModel"
+                                            [controlEl]="nameEnEl"></abp-validation-summary>
+                </div>
+            </div>
 
-<div class="modal-footer">
-  <button class="btn btn-primary" (click)="save()" [disabled]="saving">
-    {{ l('Save') }}
-  </button>
-  <button class="btn btn-secondary" (click)="bsModalRef.hide()">
-    {{ l('Cancel') }}
-  </button>
-</div>
+            <div class="form-group row required">
+                <label class="col-md-3 col-form-label" for="name">
+                    {{ "DescAr" | localize }}
+                </label>
+                <div class="col-md-9">
+                    <input type="text"
+                           class="form-control"
+                           name="descriptionAr"
+                           id="descriptionAr"
+                           required
+                           minlength="2"
+                
+                           [(ngModel)]="content.descriptionAr"
+                           #descriptionArModel="ngModel"
+                           #descriptionArEl />
+                    <abp-validation-summary [control]="descriptionArModel"
+                                            [controlEl]="descriptionArEl"></abp-validation-summary>
+                </div>
+            </div>
+            <div class="form-group row required">
+                <label class="col-md-3 col-form-label" for="displayName">
+                    {{ "DescEn" | localize }}
+                </label>
+                <div class="col-md-9">
+                    <input type="text"
+                           class="form-control"
+                           name="descriptionEn"
+                           id="descriptionEn"
+                           required
+                           minlength="2"
+                    
+                           [(ngModel)]="content.descriptionEn"
+                           #descriptionEnModel="ngModel"
+                           #descriptionEnEl />
+                    <abp-validation-summary [control]="descriptionEnModel"
+                                            [controlEl]="descriptionEnEl"></abp-validation-summary>
+                </div>
+            </div>
+
+
+
+      
+    </div>
+    <abp-modal-footer [cancelDisabled]="saving"
+                      [saveDisabled]="!contentForm.form.valid || saving"
+                      (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+</form>

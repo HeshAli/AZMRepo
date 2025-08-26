@@ -15,6 +15,7 @@ import {
   ContentDto,
   ContentServiceProxy
 } from '@shared/service-proxies/service-proxies';
+import { NgForm } from '@angular/forms';
 
 @Component({
     templateUrl: './edit-TrainingAzm-dialog.component.html'
@@ -22,7 +23,7 @@ import {
 export class EditTrainingAzmDialogComponent extends AppComponentBase
   implements OnInit {
     saving = false;
-    homeBanner = new UpdateContentDto();
+    content = new UpdateContentDto();
   id: number;
 
   @Output() onSave = new EventEmitter<any>();
@@ -38,15 +39,16 @@ export class EditTrainingAzmDialogComponent extends AppComponentBase
 
   ngOnInit(): void {
       this._contentServiceProxy.getContent(this.id).subscribe((result) => {
-      this.homeBanner = result;
+          this.content = result;
       this.cd.detectChanges();
     });
   }
 
-  save(): void {
+    save(): void {
+         
     this.saving = true;
 
-      this._contentServiceProxy.updateContent(this.homeBanner).subscribe(
+        this._contentServiceProxy.updateContent(this.content).subscribe(
       () => {
         this.notify.info(this.l('SavedSuccessfully'));
         this.bsModalRef.hide();

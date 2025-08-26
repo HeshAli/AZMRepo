@@ -126,6 +126,13 @@
     <text name="ContentNotExist">Content doesn't Exist</text>
     <text name="FooterNotExist">Footer doesn't Exist</text>
     <text name="WhyTrainingAzm">Why Training with Azm</text>
+    <text name="DescAr">Arabic Description</text>
+    <text name="DescEn">English Description</text>
+    <text name="NameAr">Arabic Name</text>
+    <text name="NameEn">English Name</text>
+    <text name="TargetAudience">Target Audience</text>
+    <text name="ProgressSteps">Progress Steps</text>
+    <text name="AcceptanceCriteria">Acceptance Criteria</text>
 	<text name="Draganddropyourimagehereorclicktobrowse">Drag and drop your image here or click to browse</text>
 	  <text name="UploadImage">Upload Image</text>
 	  <text name="Logo">Logo</text>
