@@ -47,7 +47,16 @@
                 </div>
 
                 
-
+<div class="form-check mb-3">
+      <input
+        id="isActive"
+        name="isActive"
+        type="checkbox"
+        class="form-check-input"
+        [(ngModel)]="content.isActive"
+      />
+      <label for="isActive" class="form-check-label">{{ l('IsActive') }}</label>
+    </div>
             
         
     </div>

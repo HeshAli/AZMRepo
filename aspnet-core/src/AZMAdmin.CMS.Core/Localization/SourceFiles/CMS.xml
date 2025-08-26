@@ -136,5 +136,9 @@
 	  <text name="TargetAudience">Target Audience</text>
 	  <text name="ProgressSteps">Progress Steps</text>
 	  <text name="AcceptanceCriteria">Acceptance Criteria</text>
+	  <text name="Gallery">Gallery</text>
+	  <text name="CreateGallery">Create Gallery Image</text>
+	  <text name="EditGallery">Edit Gallery Image</text>
+	  <text name="GalleryImageDeleteWarningMessage">Gallery image will be deleted</text>
   </texts>
 </localizationDictionary>
