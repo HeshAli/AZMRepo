@@ -1883,6 +1883,63 @@ export class CourseDetailsServiceProxy {
      * @param body (optional) 
      * @return OK
      */
+    createListCourseDetails(body: CreateCourseDetailsDto[] | undefined): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/services/app/CourseDetails/CreateListCourseDetails";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreateListCourseDetails(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreateListCourseDetails(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<boolean>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<boolean>;
+        }));
+    }
+
+    protected processCreateListCourseDetails(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return OK
+     */
     updateCourseDetails(body: UpdateCourseDetailsDto | undefined): Observable<CourseDetailsDto> {
         let url_ = this.baseUrl + "/api/services/app/CourseDetails/UpdateCourseDetails";
         url_ = url_.replace(/[?&]$/, "");
@@ -2756,6 +2813,195 @@ export class HomeBannerServiceProxy {
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
+@Injectable()
+export class PortalManagementServiceServiceProxy {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
+
+    /**
+     * @param code (optional) 
+     * @return OK
+     */
+    getByCode(code: string | undefined): Observable<ContentCategoryDto> {
+        let url_ = this.baseUrl + "/api/services/app/PortalManagementService/GetByCode?";
+        if (code === null)
+            throw new Error("The parameter 'code' cannot be null.");
+        else if (code !== undefined)
+            url_ += "code=" + encodeURIComponent("" + code) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetByCode(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetByCode(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ContentCategoryDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ContentCategoryDto>;
+        }));
+    }
+
+    protected processGetByCode(response: HttpResponseBase): Observable<ContentCategoryDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ContentCategoryDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param code (optional) 
+     * @return OK
+     */
+    getByCategoryCode(code: string | undefined): Observable<ContentWithAttachmentDto[]> {
+        let url_ = this.baseUrl + "/api/services/app/PortalManagementService/GetByCategoryCode?";
+        if (code === null)
+            throw new Error("The parameter 'code' cannot be null.");
+        else if (code !== undefined)
+            url_ += "code=" + encodeURIComponent("" + code) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetByCategoryCode(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetByCategoryCode(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ContentWithAttachmentDto[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ContentWithAttachmentDto[]>;
+        }));
+    }
+
+    protected processGetByCategoryCode(response: HttpResponseBase): Observable<ContentWithAttachmentDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(ContentWithAttachmentDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @return OK
+     */
+    getHomeBanners(): Observable<PortalHomeBanner[]> {
+        let url_ = this.baseUrl + "/api/services/app/PortalManagementService/GetHomeBanners";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetHomeBanners(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetHomeBanners(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<PortalHomeBanner[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<PortalHomeBanner[]>;
+        }));
+    }
+
+    protected processGetHomeBanners(response: HttpResponseBase): Observable<PortalHomeBanner[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(PortalHomeBanner.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -4908,6 +5154,77 @@ export enum ContentEnum {
     _3 = 3,
 }
 
+export class ContentWithAttachmentDto implements IContentWithAttachmentDto {
+    id: number;
+    displayName: string | undefined;
+    displayDescription: string | undefined;
+    redirectUrl: string | undefined;
+    isActive: boolean | undefined;
+    categoryCode: string | undefined;
+    attachmentId: number | undefined;
+    attachmentUrl: string | undefined;
+
+    constructor(data?: IContentWithAttachmentDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.displayName = _data["displayName"];
+            this.displayDescription = _data["displayDescription"];
+            this.redirectUrl = _data["redirectUrl"];
+            this.isActive = _data["isActive"];
+            this.categoryCode = _data["categoryCode"];
+            this.attachmentId = _data["attachmentId"];
+            this.attachmentUrl = _data["attachmentUrl"];
+        }
+    }
+
+    static fromJS(data: any): ContentWithAttachmentDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ContentWithAttachmentDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["displayName"] = this.displayName;
+        data["displayDescription"] = this.displayDescription;
+        data["redirectUrl"] = this.redirectUrl;
+        data["isActive"] = this.isActive;
+        data["categoryCode"] = this.categoryCode;
+        data["attachmentId"] = this.attachmentId;
+        data["attachmentUrl"] = this.attachmentUrl;
+        return data;
+    }
+
+    clone(): ContentWithAttachmentDto {
+        const json = this.toJSON();
+        let result = new ContentWithAttachmentDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IContentWithAttachmentDto {
+    id: number;
+    displayName: string | undefined;
+    displayDescription: string | undefined;
+    redirectUrl: string | undefined;
+    isActive: boolean | undefined;
+    categoryCode: string | undefined;
+    attachmentId: number | undefined;
+    attachmentUrl: string | undefined;
+}
+
 export class CourseDetailsDto implements ICourseDetailsDto {
     id: number;
     nameAr: string | undefined;
@@ -6132,6 +6449,8 @@ export class HomeBannerDto implements IHomeBannerDto {
     imageId: number | undefined;
     logoId: number | undefined;
     isActive: boolean | undefined;
+    imageURL: string | undefined;
+    logoURL: string | undefined;
 
     constructor(data?: IHomeBannerDto) {
         if (data) {
@@ -6150,6 +6469,8 @@ export class HomeBannerDto implements IHomeBannerDto {
             this.imageId = _data["imageId"];
             this.logoId = _data["logoId"];
             this.isActive = _data["isActive"];
+            this.imageURL = _data["imageURL"];
+            this.logoURL = _data["logoURL"];
         }
     }
 
@@ -6168,6 +6489,8 @@ export class HomeBannerDto implements IHomeBannerDto {
         data["imageId"] = this.imageId;
         data["logoId"] = this.logoId;
         data["isActive"] = this.isActive;
+        data["imageURL"] = this.imageURL;
+        data["logoURL"] = this.logoURL;
         return data;
     }
 
@@ -6186,6 +6509,8 @@ export interface IHomeBannerDto {
     imageId: number | undefined;
     logoId: number | undefined;
     isActive: boolean | undefined;
+    imageURL: string | undefined;
+    logoURL: string | undefined;
 }
 
 export class HomeBannerDtoPagedResultDto implements IHomeBannerDtoPagedResultDto {
@@ -6480,6 +6805,61 @@ export class PermissionDtoListResultDto implements IPermissionDtoListResultDto {
 
 export interface IPermissionDtoListResultDto {
     items: PermissionDto[] | undefined;
+}
+
+export class PortalHomeBanner implements IPortalHomeBanner {
+    id: number;
+    displayName: string | undefined;
+    imageURL: string | undefined;
+    logoURL: string | undefined;
+
+    constructor(data?: IPortalHomeBanner) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.displayName = _data["displayName"];
+            this.imageURL = _data["imageURL"];
+            this.logoURL = _data["logoURL"];
+        }
+    }
+
+    static fromJS(data: any): PortalHomeBanner {
+        data = typeof data === 'object' ? data : {};
+        let result = new PortalHomeBanner();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["displayName"] = this.displayName;
+        data["imageURL"] = this.imageURL;
+        data["logoURL"] = this.logoURL;
+        return data;
+    }
+
+    clone(): PortalHomeBanner {
+        const json = this.toJSON();
+        let result = new PortalHomeBanner();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPortalHomeBanner {
+    id: number;
+    displayName: string | undefined;
+    imageURL: string | undefined;
+    logoURL: string | undefined;
 }
 
 export class RegisterInput implements IRegisterInput {
