@@ -9,5 +9,7 @@ namespace AZMAdmin.CMS.HomeBanners.Dto
         public int? ImageId { get; set; }
         public int? LogoId { get; set; }
         public bool? IsActive { get; set; }
+        public string ImageURL { get; set; }
+        public string LogoURL { get; set; }
     }
 }

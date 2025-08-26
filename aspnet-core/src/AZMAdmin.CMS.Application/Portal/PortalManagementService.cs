@@ -11,6 +11,7 @@ using AZMAdmin.CMS.Portal.Dto;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,19 +33,19 @@ namespace AZMAdmin.CMS.Portal
 
         public async Task<ContentCategoryDto> GetByCode(string code)
         {
-            var category = await _repository.FirstOrDefaultAsync(s=>s.Code ==code && s.IsActive==true);
+            var category = await _repository.FirstOrDefaultAsync(s => s.Code == code && s.IsActive == true);
             if (category is null)
             {
                 return new ContentCategoryDto();
             }
-               return ObjectMapper.Map<ContentCategoryDto>(category); ;
+            return ObjectMapper.Map<ContentCategoryDto>(category); ;
         }
 
         public async Task<List<ContentWithAttachmentDto>> GetByCategoryCode(string code)
         {
             // Include relations so we can filter by category code and read attachment id
-            var query = ( _contentRepo.GetAllIncluding(x => x.ContentCategory, x => x.Attachment))
-                .Where(x => x.ContentCategory.Code == code && x.IsActive ==true);
+            var query = (_contentRepo.GetAllIncluding(x => x.ContentCategory, x => x.Attachment))
+                .Where(x => x.ContentCategory.Code == code && x.IsActive == true);
 
             var entities = await query.ToListAsync();
 
@@ -52,15 +53,13 @@ namespace AZMAdmin.CMS.Portal
             var result = entities.Select(x => new ContentWithAttachmentDto
             {
                 Id = x.Id,
-                NameAr = x.NameAr,
-                NameEn = x.NameEn,
-                DescriptionAr = x.DescriptionAr,
-                DescriptionEn = x.DescriptionEn,
+                DisplayName =CultureInfo.CurrentCulture.Name=="en"? x.NameEn:x.NameAr,
+                DisplayDescription = CultureInfo.CurrentCulture.Name == "en" ? x.DescriptionEn : x.DescriptionAr,
                 RedirectUrl = x.RedirectUrl,
                 IsActive = x.IsActive,
 
                 CategoryCode = x.ContentCategory?.Code,
-                AttachmentId = x.AttachmentId, 
+                AttachmentId = x.AttachmentId,
                 AttachmentUrl = x.AttachmentId.HasValue ? x.Attachment?.Path : null
             }).ToList();
 
@@ -68,10 +67,17 @@ namespace AZMAdmin.CMS.Portal
         }
 
 
-        public async Task<List<HomeBannerDto>> getHomeBanners()
+        public async Task<List<PortalHomeBanner>> GetHomeBanners()
         {
-            var homeBanners = await _homeBannserRepo.GetAllListAsync(s => s.IsActive == true);
-            return ObjectMapper.Map<List<HomeBannerDto>>(homeBanners);
+            var homeBanners =  _homeBannserRepo.GetAllIncluding(s => s.Image, s => s.Logo)
+                .Where(s=>s.IsActive ==true).Select(mod => new PortalHomeBanner
+                {
+                Id = mod.Id,
+                DisplayName = CultureInfo.CurrentCulture.Name == "en" ? mod.NameEn : mod.NameAr,
+                ImageURL = mod.ImageId !=null? mod.Image.Path:null,
+                LogoURL = mod.LogoId != null ? mod.Logo.Path : null,
+                }).ToList();
+            return homeBanners;
         }
     }
 }
