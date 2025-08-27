@@ -62,6 +62,14 @@
 		<text name="TrainingCourses">البرامج التدريبية</text>
 		<text name="CreateTrainingCourses">انشاء برنامج تدريبي</text>
 		<text name="TrainingUnitDeleteWarningMessage">سوف يتم حذف البرنامج التدريبية</text>
-		<text name="GeneralObjectiveDeleteWarningMessage">سوف يتم حذف الهدف العام</text> 
+		<text name="GeneralObjectiveDeleteWarningMessage">سوف يتم حذف الهدف العام</text>
+
+    <text name="Portal_Home">الرئيسية</text>
+    <text name="Portal_About_Us">عن عزم</text>
+    <text name="Portal_Training_Programs">البرامج التدريبية</text>
+    <text name="Portal_FAQ">الاسئلة الشائعة</text>
+    <text name="Portal_Contact_Us">تواصل معنا</text>
+    <text name="Portal_Inquiries_Assistance">للاستفسارات والمساعدة</text>
+    <text name="Portal_Logo">الشعار</text>
 	</texts>
 </localizationDictionary>
