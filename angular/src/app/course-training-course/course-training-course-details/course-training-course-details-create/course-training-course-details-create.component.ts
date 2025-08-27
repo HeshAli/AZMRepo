@@ -7,17 +7,17 @@ import {
   ChangeDetectorRef,
 } from "@angular/core";
 import { BsModalRef } from "ngx-bootstrap/modal";
-import { AppComponentBase } from "../../../shared/app-component-base";
+import { AppComponentBase } from "../../../../shared/app-component-base";
 import {
   CreateCourseDto,
-  CourseServiceProxy,
-} from "../../../shared/service-proxies/service-proxies";
+  CourseDetailsServiceProxy,
+} from "../../../../shared/service-proxies/service-proxies";
 
 @Component({
-  templateUrl: "./create-course-training-course.component.html",
+  templateUrl: "./course-training-course-details-create.component.html",
   selector: "app-create-course-training",
 })
-export class CreateCourseTrainingComponent
+export class CourseTrainingCourseDetailsCreateComponent
   extends AppComponentBase
   implements OnInit
 {
@@ -28,7 +28,7 @@ export class CreateCourseTrainingComponent
 
   constructor(
     injector: Injector,
-    public _courseServiceProxy: CourseServiceProxy,
+    public _courseDetailsServiceProxy: CourseDetailsServiceProxy,
     public bsModalRef: BsModalRef,
     private cd: ChangeDetectorRef
   ) {
@@ -39,7 +39,7 @@ export class CreateCourseTrainingComponent
 
   save(): void {
     this.saving = true;
-    this._courseServiceProxy.createCourse(this.course).subscribe(
+    this._courseDetailsServiceProxy.createCourseDetails(this.course).subscribe(
       () => {
         this.notify.info(this.l("SavedSuccessfully"));
         this.bsModalRef.hide();

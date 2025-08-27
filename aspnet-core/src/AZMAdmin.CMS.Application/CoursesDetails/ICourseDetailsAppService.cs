@@ -12,6 +12,7 @@ namespace AZMAdmin.CMS.CoursesDetails
         Task<CourseDetailsDto> CreateCourseDetailsAsync(CreateCourseDetailsDto input);
         Task<CourseDetailsDto> UpdateCourseDetailsAsync(UpdateCourseDetailsDto input);
         Task DeleteCourseDetailsAsync(EntityDto<int> input);
+        Task<PagedResultDto<CourseDetailsDto>> GetCourseDetailsByCourseIdAsync(PagedCourseDetailsResultRequestDto input, int? courseId);
     }
 
 }

@@ -1,0 +1,41 @@
+<form class="form-horizontal"
+      autocomplete="off"
+      #contentForm="ngForm"
+      (ngSubmit)="save()">
+
+  <abp-modal-header [title]="'EditCourseDetail' | localize"
+                    (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+
+  <div class="modal-body">
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label">{{ "NameAr" | localize }}</label>
+      <div class="col-md-9">
+        <textarea
+            rows="3"
+            class="form-control"
+            name="nameAr"
+            [(ngModel)]="detail.nameAr"
+            required>
+            </textarea>
+      </div>
+    </div>
+
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label">{{ "NameEn" | localize }}</label>
+      <div class="col-md-9">
+        <textarea
+            rows="3"
+            class="form-control"
+            name="nameEn"
+            [(ngModel)]="detail.nameEn"
+            required>
+            </textarea>
+      </div>
+    </div>
+ 
+  </div>
+
+  <abp-modal-footer [cancelDisabled]="saving"
+                    [saveDisabled]="!contentForm.form.valid || saving"
+                    (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+</form>

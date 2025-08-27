@@ -55,15 +55,14 @@
     <text name="AnswerEn">الإجابة باللغة الإنجليزية</text>
     <text name="AboutAzm">عن عزم</text>
     <text name="AboutAzmContent">محتوى عن عزم</text>
-		<text name="CreateGeneralObjectives">انشاء الأهداف العامة</text>
-		<text name="EditGeneralObjectives">تعديل الأهداف العامة</text>
-		<text name="GeneralObjectives">الأهداف العامة</text>
-		<text name="EditTrainingCourses">تعديل البرنامج التدريبي</text>
-		<text name="TrainingCourses">البرامج التدريبية</text>
-		<text name="CreateTrainingCourses">انشاء برنامج تدريبي</text>
-		<text name="TrainingUnitDeleteWarningMessage">سوف يتم حذف البرنامج التدريبية</text>
-		<text name="GeneralObjectiveDeleteWarningMessage">سوف يتم حذف الهدف العام</text>
-
+	<text name="CreateGeneralObjectives">انشاء الأهداف العامة</text>
+	<text name="EditGeneralObjectives">تعديل الأهداف العامة</text>
+	<text name="GeneralObjectives">الأهداف العامة</text>
+	<text name="EditTrainingCourses">تعديل البرنامج التدريبي</text>
+	<text name="TrainingCourses">البرامج التدريبية</text>
+	<text name="CreateTrainingCourses">انشاء برنامج تدريبي</text>
+	<text name="TrainingUnitDeleteWarningMessage">سوف يتم حذف البرنامج التدريبية</text>
+	<text name="GeneralObjectiveDeleteWarningMessage">سوف يتم حذف الهدف العام</text>
     <text name="Portal_Home">الرئيسية</text>
     <text name="Portal_About_Us">عن عزم</text>
     <text name="Portal_Training_Programs">البرامج التدريبية</text>
@@ -71,5 +70,10 @@
     <text name="Portal_Contact_Us">تواصل معنا</text>
     <text name="Portal_Inquiries_Assistance">للاستفسارات والمساعدة</text>
     <text name="Portal_Logo">الشعار</text>
+    <text name="ManageDetails">إدارة تفاصيل البرنامج</text>
+    <text name="TrainingCoursesDetails">تفاصيل البرنامج التدريبي</text>
+    <text name="EditCourseDetail">تعديل تفاصيل البرنامج التدريبي</text>
+	<text name="CreateTrainingDetailsCourses">انشاء تفاصيل البرنامج التدريبي</text>
+	<text name="TrainingUnitDetailDeleteWarningMessage">سوف يتم حذف تفاصيل البرنامج التدريبي</text>
 	</texts>
 </localizationDictionary>

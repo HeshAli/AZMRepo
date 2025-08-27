@@ -504,7 +504,7 @@ namespace AZMAdmin.CMS.EntityFrameworkCore.Seed.Tenants
         {
             var course = _context.Courses
                 .IgnoreQueryFilters()
-                .FirstOrDefault(c => c.NameEn == "Occupational Safety and Health Program Professional Track");
+                .FirstOrDefault(c => c.NameEn == "Occupational Safety and Health Program Professional Track" && c.IsDeleted == false);
 
             if (course == null)
             {
@@ -570,7 +570,7 @@ namespace AZMAdmin.CMS.EntityFrameworkCore.Seed.Tenants
         {
             var course = _context.Courses
                 .IgnoreQueryFilters()
-                .FirstOrDefault(c => c.NameEn == "Occupational Safety and Health Program Practitioner Track");
+                .FirstOrDefault(c => c.NameEn == "Occupational Safety and Health Program Practitioner Track" && c.IsDeleted == false);
 
             if (course == null)
             {
@@ -637,7 +637,7 @@ namespace AZMAdmin.CMS.EntityFrameworkCore.Seed.Tenants
         {
             var course = _context.Courses
                 .IgnoreQueryFilters()
-                .FirstOrDefault(c => c.NameEn == "Event Management Software");
+                .FirstOrDefault(c => c.NameEn == "Event Management Software" && c.IsDeleted == false);
 
             if (course == null)
             {
@@ -703,7 +703,7 @@ namespace AZMAdmin.CMS.EntityFrameworkCore.Seed.Tenants
         {
             var course = _context.Courses
                 .IgnoreQueryFilters()
-                .FirstOrDefault(c => c.NameEn == "Site Engineering Program");
+                .FirstOrDefault(c => c.NameEn == "Site Engineering Program" && c.IsDeleted == false);
 
             if (course == null)
             {

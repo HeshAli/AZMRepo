@@ -165,5 +165,9 @@
     <text name="Portal_Contact_Us">Contact Us</text>
     <text name="Portal_Inquiries_Assistance">Inquiries Assistance</text>
     <text name="Portal_Logo">Logo</text>
+    <text name="ManageDetails">Manage Details</text>
+    <text name="TrainingCoursesDetails">Training Course Details</text>
+    <text name="CreateTrainingDetailsCourses">Create Training Course Detail</text>
+    <text name="TrainingUnitDetailDeleteWarningMessage">Training Unit Detail will be deleted</text>
   </texts>
 </localizationDictionary>

@@ -6,6 +6,7 @@ using Abp.Linq.Extensions;
 using Abp.UI;
 using AZMAdmin.CMS.Courses.Dto;
 using AZMAdmin.CMS.CoursesDetails.Dto;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,25 @@ namespace AZMAdmin.CMS.CoursesDetails
             var dtos = ObjectMapper.Map<List<CourseDetailsDto>>(items);
             return new PagedResultDto<CourseDetailsDto>(totalCount, dtos);
         }
+
+        public async Task<PagedResultDto<CourseDetailsDto>> GetCourseDetailsByCourseIdAsync([FromQuery]PagedCourseDetailsResultRequestDto input, int? courseId)
+        {
+            var query = _repo.GetAll()
+                .WhereIf(courseId.HasValue, x => x.CourseId == courseId.Value)
+                .WhereIf(!string.IsNullOrWhiteSpace(input.Filter),
+                    x => x.NameAr.Contains(input.Filter) || x.NameEn.Contains(input.Filter));
+
+            var totalCount = await query.CountAsync();
+
+            var items = await query
+                .OrderByDescending(x => x.CreationTime)
+                .PageBy(input)
+                .ToListAsync();
+
+            var dtos = ObjectMapper.Map<List<CourseDetailsDto>>(items);
+            return new PagedResultDto<CourseDetailsDto>(totalCount, dtos);
+        }
+
 
         public async Task<CourseDetailsDto> CreateCourseDetailsAsync(CreateCourseDetailsDto input)
         {

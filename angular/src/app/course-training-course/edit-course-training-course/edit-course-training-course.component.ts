@@ -9,18 +9,17 @@ import {
 import { BsModalRef } from "ngx-bootstrap/modal";
 import { AppComponentBase } from "../../../shared/app-component-base";
 import {
-  HomeBannerServiceProxy,
-  HomeBannerDto,
-  UpdateContentDto,
-  ContentDto,
-  ContentServiceProxy,
   UpdateCourseDto,
   CourseServiceProxy,
+  CourseDetailsServiceProxy,
+  CourseDetailsDto,
+  CourseDto,
 } from "../../../shared/service-proxies/service-proxies";
 import { NgForm } from "@angular/forms";
 
 @Component({
   templateUrl: "./edit-course-training-course.component.html",
+  selector: "app-edit-course-training",
 })
 export class EditCourseTrainingComponent
   extends AppComponentBase
@@ -29,12 +28,16 @@ export class EditCourseTrainingComponent
   saving = false;
   course = new UpdateCourseDto();
   id: number;
+  courseDetails: CourseDetailsDto[] = [];
+
+  totalCount = 0;
 
   @Output() onSave = new EventEmitter<any>();
 
   constructor(
     injector: Injector,
     public _courseServiceProxy: CourseServiceProxy,
+    public _courseDetailsServiceProxy: CourseDetailsServiceProxy,
     public bsModalRef: BsModalRef,
     private cd: ChangeDetectorRef
   ) {
@@ -43,7 +46,7 @@ export class EditCourseTrainingComponent
 
   ngOnInit(): void {
     this._courseServiceProxy.getCourse(this.id).subscribe((result) => {
-      this.course = result;
+      this.course = result as UpdateCourseDto;
       this.cd.detectChanges();
     });
   }
