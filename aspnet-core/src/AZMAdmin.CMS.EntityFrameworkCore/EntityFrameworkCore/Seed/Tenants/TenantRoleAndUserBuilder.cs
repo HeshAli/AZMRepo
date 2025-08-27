@@ -296,12 +296,28 @@ namespace AZMAdmin.CMS.EntityFrameworkCore.Seed.Tenants
                     Code = "Questions",
                     IsActive = true,
                     NameAr = "الأسئلة الشائعة",
-                    NameEn = "General questions"
+                    NameEn = "General Questions"
 
                 };
 
                 _context.ContentCategories.Add(CatAzm);
                 _context.SaveChanges(); 
+            }
+
+            var categoryAboutAzm = _context.ContentCategories.IgnoreQueryFilters().FirstOrDefault(u => u.Code == "AboutAzm");
+            if (categoryAboutAzm == null)
+            {
+                var CatAzm = new ContentCategory()
+                {
+                    Code = "AboutAzm",
+                    IsActive = true,
+                    NameAr = "عن عزم",
+                    NameEn = "About Azm"
+
+                };
+
+                _context.ContentCategories.Add(CatAzm);
+                _context.SaveChanges();
             }
 
             var languages = _context.Languages.IgnoreQueryFilters().Where(u => u.Name != "en" && u.Name != "ar").ToList();

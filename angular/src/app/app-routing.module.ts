@@ -129,7 +129,16 @@ import { AppComponent } from "./app.component";
               ),
             /*  data: { permission: 'Pages.Roles' },*/
             canActivate: [AppRouteGuard],
-          },
+            },
+            {
+                path: "aboutazm",
+                loadChildren: () =>
+                    import("./about-azm/about-azm.module").then(
+                        (m) => m.AboutAzmModule
+                    ),
+                /*  data: { permission: 'Pages.Roles' },*/
+                canActivate: [AppRouteGuard],
+            },
           {
             path: "roles",
             loadChildren: () =>
