@@ -58,11 +58,10 @@
 		<text name="CreateGeneralObjectives">انشاء الأهداف العامة</text>
 		<text name="EditGeneralObjectives">تعديل الأهداف العامة</text>
 		<text name="GeneralObjectives">الأهداف العامة</text>
-		<text name="EditTrainingCourses">تعديل الوحدة التدريبية</text>
-		<text name="TrainingCourses">الوحدات التدريبية</text>
-		<text name="CreateTrainingCourses">انشاء وحدة تدريبية</text>
-		<text name="TrainingUnitDeleteWarningMessage">سوف يتم حذف الوحدة التدريبية</text>
-		<text name="GeneralObjectiveDeleteWarningMessage">سوف يتم حذف الهدف العام</text>
-    <text name="AboutAzmContent">محتوى عن عزم</text> 
+		<text name="EditTrainingCourses">تعديل البرنامج التدريبي</text>
+		<text name="TrainingCourses">البرامج التدريبية</text>
+		<text name="CreateTrainingCourses">انشاء برنامج تدريبي</text>
+		<text name="TrainingUnitDeleteWarningMessage">سوف يتم حذف البرنامج التدريبية</text>
+		<text name="GeneralObjectiveDeleteWarningMessage">سوف يتم حذف الهدف العام</text> 
 	</texts>
 </localizationDictionary>
