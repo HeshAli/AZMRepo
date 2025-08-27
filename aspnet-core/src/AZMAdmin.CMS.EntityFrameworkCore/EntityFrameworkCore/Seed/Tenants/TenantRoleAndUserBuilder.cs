@@ -8,11 +8,14 @@ using AZMAdmin.CMS.Authorization.Roles;
 using AZMAdmin.CMS.Authorization.Users;
 using AZMAdmin.CMS.ContentCategories;
 using AZMAdmin.CMS.Contents;
+using AZMAdmin.CMS.Courses;
+using AZMAdmin.CMS.CoursesDetails;
 using AZMAdmin.CMS.Enums;
 using AZMAdmin.CMS.Footers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -36,6 +39,12 @@ namespace AZMAdmin.CMS.EntityFrameworkCore.Seed.Tenants
 
         private void CreateRolesAndUsers()
         {
+            //create courses and courses contents
+
+
+
+
+
             // Admin role
 
             var adminRole = _context.Roles.IgnoreQueryFilters().FirstOrDefault(r => r.TenantId == _tenantId && r.Name == StaticRoleNames.Tenants.Admin);
@@ -327,7 +336,10 @@ namespace AZMAdmin.CMS.EntityFrameworkCore.Seed.Tenants
                 _context.SaveChanges();
             }
             PrepareFooter();
-
+            CreateCourse1WithDetails();
+            CreateCourse2WithDetails();
+            CreateCourse3WithDetails();
+            CreateCourse4WithDetails();
         }
 
         private void PrepareFooter()
@@ -485,6 +497,272 @@ namespace AZMAdmin.CMS.EntityFrameworkCore.Seed.Tenants
                     _context.Footers.Add(footer);
                     _context.SaveChanges();
                 }
+            }
+        }
+
+        private void CreateCourse1WithDetails()
+        {
+            var course = _context.Courses
+                .IgnoreQueryFilters()
+                .FirstOrDefault(c => c.NameEn == "Occupational Safety and Health Program Professional Track");
+
+            if (course == null)
+            {
+                course = new Course
+                {
+                    NameAr = "برنامج السلامة والصحة المهنية مسار محترف",
+                    NameEn = "Occupational Safety and Health Program Professional Track",
+                    DescriptionAr = "نبذة بسيطة عن البرنامج",
+                    DescriptionEn = "A brief overview of the program",
+                    RedirectUrl = "https://waedstg.coe.com.sa/home/course/4920",
+                    CreationTime = DateTime.Now,
+                    IsActive = true
+                };
+
+                _context.Courses.Add(course);
+                _context.SaveChanges();
+
+                var details = new List<CourseDetails>
+        {
+            new CourseDetails
+            {
+                NameAr = "فهم نظام إدارة السلامة والصحة المهنية وتنفيذ متطلبات النظام لضمان التطوير والتنفيذ الفعال لخطة السلامة والصحة المهنية",
+                NameEn = "Understand the occupational health and safety management system and implement the system requirements to ensure the effective development and implementation of the occupational health and safety plan",
+                CourseId = course.Id,
+                CreationTime = DateTime.Now
+            },
+            new CourseDetails
+            {
+                NameAr = "فهم إدارة مخاطر السلامة المهنية وإنشاء ووضع وتنفيذ خطة لإدارة مخاطر الصحة والسلامة المهنية",
+                NameEn = "Understand occupational safety risk management and create, develop and implement an occupational health and safety risk management plan",
+                CourseId = course.Id,
+                CreationTime = DateTime.Now
+            },
+            new CourseDetails
+            {
+                NameAr = "فهم عمليات التدقيق والتفتيش في السلامة والصحة المهنية لتطوير وتنفيذ عملية التدقيق الفعالة في السلامة والصحة المهنية",
+                NameEn = "Understand occupational safety and health audit and inspection processes to develop and implement an effective occupational safety and health audit process",
+                CourseId = course.Id,
+                CreationTime = DateTime.Now
+            },
+            new CourseDetails
+            {
+                NameAr = "فهم دراسة ثقافة السلامة والصحة المهنية لوضع وتنفيذ استراتيجية للسلامة والصحة المهنية",
+                NameEn = "Understand the study of occupational safety and health culture to develop and implement an occupational safety and health strategy",
+                CourseId = course.Id,
+                CreationTime = DateTime.Now
+            },
+            new CourseDetails
+            {
+                NameAr = "فهم الحوادث والحوادث الوشيكة ذات الصلة بالسلامة والصحة المهنية ووضع إجراءات وتنفيذ خطة واضحة ومناسبة للحوادث والأحداث والحوادث الوشيكة",
+                NameEn = "Understand occupational safety and health-related incidents and near misses and develop and implement a clear and appropriate plan for incidents, events and near misses",
+                CourseId = course.Id,
+                CreationTime = DateTime.Now
+            }
+        };
+
+                _context.CoursesDetails.AddRange(details);
+                _context.SaveChanges();
+            }
+        }
+
+        private void CreateCourse2WithDetails()
+        {
+            var course = _context.Courses
+                .IgnoreQueryFilters()
+                .FirstOrDefault(c => c.NameEn == "Occupational Safety and Health Program Practitioner Track");
+
+            if (course == null)
+            {
+                course = new Course
+                {
+                    NameAr = "برنامج السلامة والصحة المهنية مسار ممارس",
+                    NameEn = "Occupational Safety and Health Program Practitioner Track",
+                    DescriptionAr = "نبذة بسيطة عن البرنامج",
+                    DescriptionEn = "A brief overview of the program",
+                    RedirectUrl = "https://waedstg.coe.com.sa/home/course/4919",
+                    CreationTime = DateTime.Now,
+                    IsActive = true
+                };
+
+                _context.Courses.Add(course);
+                _context.SaveChanges();
+
+                var details = new List<CourseDetails>
+        {
+            new CourseDetails
+                {
+                    NameAr = "التدريب على نظم إدارة السلامة والصحة المهنية.",
+                    NameEn = "Training on occupational safety and health management systems.",
+                    CourseId = course.Id,
+                    CreationTime = DateTime.Now
+                },
+                new CourseDetails
+                {
+                    NameAr = "التدريب على تقنيات وأساليب ومهارات التدقيق والتفتيش في السلامة والصحة المهنية.",
+                    NameEn = "Training on techniques, methods, and skills of auditing and inspection in occupational safety and health.",
+                    CourseId = course.Id,
+                    CreationTime = DateTime.Now
+                },
+                new CourseDetails
+                {
+                    NameAr = "التدريب على مهارات إدارة مخاطر السلامة والصحة المهنية.",
+                    NameEn = "Training on skills for managing occupational safety and health risks.",
+                    CourseId = course.Id,
+                    CreationTime = DateTime.Now
+                },
+                new CourseDetails
+                {
+                    NameAr = "التدريب على مهارات التحقيق في الحوادث ذات الصلة بالسلامة والصحة المهنية.",
+                    NameEn = "Training on skills for investigating incidents related to occupational safety and health.",
+                    CourseId = course.Id,
+                    CreationTime = DateTime.Now
+                },
+                new CourseDetails
+                {
+                    NameAr = "التدريب على مفاهيم وأساسيات ثقافة السلامة والصحة المهنية.",
+                    NameEn = "Training on concepts and fundamentals of occupational safety and health culture.",
+                    CourseId = course.Id,
+                    CreationTime = DateTime.Now
+                }
+
+        };
+
+                _context.CoursesDetails.AddRange(details);
+                _context.SaveChanges();
+            }
+        }
+
+        private void CreateCourse3WithDetails()
+        {
+            var course = _context.Courses
+                .IgnoreQueryFilters()
+                .FirstOrDefault(c => c.NameEn == "Event Management Software");
+
+            if (course == null)
+            {
+                course = new Course
+                {
+                    NameAr = "برنامج إدارة الفعاليات",
+                    NameEn = "Event Management Software",
+                    DescriptionAr = "نبذة بسيطة عن البرنامج",
+                    DescriptionEn = "A brief overview of the program",
+                    RedirectUrl = "https://waedstg.coe.com.sa/home/course/4921",
+                    CreationTime = DateTime.Now,
+                    IsActive = true
+                };
+
+                _context.Courses.Add(course);
+                _context.SaveChanges();
+
+                var details = new List<CourseDetails>
+        {
+            new CourseDetails
+                {
+                    NameAr = "تعلّم كيفية إعداد وتنظيم الفعاليات بطريقة احترافية من البداية للنهاية.",
+                    NameEn = "Learn how to plan and organize events professionally from start to finish.",
+                    CourseId = course.Id,
+                    CreationTime = DateTime.Now
+                },
+                new CourseDetails
+                {
+                    NameAr = "استخدام أحدث البرمجيات والتقنيات لتسهيل التنظيم والمتابعة.",
+                    NameEn = "Use the latest software and technologies to facilitate organization and follow-up.",
+                    CourseId = course.Id,
+                    CreationTime = DateTime.Now
+                },
+                new CourseDetails
+                {
+                    NameAr = "القدرة على تخصيص الموارد المالية والبشرية بفعالية لضمان نجاح الفعالية.",
+                    NameEn = "Ability to allocate financial and human resources effectively to ensure event success.",
+                    CourseId = course.Id,
+                    CreationTime = DateTime.Now
+                },
+                new CourseDetails
+                {
+                    NameAr = "تعلّم كيفية التعامل مع التحديات الطارئة واتخاذ القرارات السريعة والصائبة.",
+                    NameEn = "Learn how to handle urgent challenges and make quick, sound decisions.",
+                    CourseId = course.Id,
+                    CreationTime = DateTime.Now
+                },
+                new CourseDetails
+                {
+                    NameAr = "اكتساب القدرة على التعامل مع الفرق، الضيوف، والشركاء بشكل احترافي.",
+                    NameEn = "Gain the ability to deal professionally with teams, guests, and partners.",
+                    CourseId = course.Id,
+                    CreationTime = DateTime.Now
+                }
+        };
+
+                _context.CoursesDetails.AddRange(details);
+                _context.SaveChanges();
+            }
+        }
+
+        private void CreateCourse4WithDetails()
+        {
+            var course = _context.Courses
+                .IgnoreQueryFilters()
+                .FirstOrDefault(c => c.NameEn == "Site Engineering Program");
+
+            if (course == null)
+            {
+                course = new Course
+                {
+                    NameAr = "برنامج هندسة المواقع",
+                    NameEn = "Site Engineering Program",
+                    DescriptionAr = "نبذة بسيطة عن البرنامج",
+                    DescriptionEn = "A brief overview of the program",
+                    RedirectUrl = "https://waedstg.coe.com.sa/home/course/4922",
+                    CreationTime = DateTime.Now,
+                    IsActive = true
+                };
+
+                _context.Courses.Add(course);
+                _context.SaveChanges();
+
+                var details = new List<CourseDetails>
+        {
+            new CourseDetails
+                {
+                    NameAr = "اكتساب خبرة عملية بلغات البرمجة الأساسية.",
+                    NameEn = "Gain hands-on experience with basic programming languages.",
+                    CourseId = course.Id,
+                    CreationTime = DateTime.Now
+                },
+                new CourseDetails
+                {
+                    NameAr = "التعرف على البرمجيات والأدوات الحديثة لتصميم وتطوير المواقع.",
+                    NameEn = "Learn about modern software and tools for website design and development.",
+                    CourseId = course.Id,
+                    CreationTime = DateTime.Now
+                },
+                new CourseDetails
+                {
+                    NameAr = "القدرة على ربط المواقع بأنظمة خلفية وإدارة البيانات بكفاءة.",
+                    NameEn = "Ability to integrate websites with backend systems and manage data efficiently.",
+                    CourseId = course.Id,
+                    CreationTime = DateTime.Now
+                },
+                new CourseDetails
+                {
+                    NameAr = "تجهيز المتدرب بالمهارات العملية المطلوبة للعمل كمطور مواقع إلكترونية محترف.",
+                    NameEn = "Equip the trainee with the practical skills required to work as a professional web developer.",
+                    CourseId = course.Id,
+                    CreationTime = DateTime.Now
+                },
+                new CourseDetails
+                {
+                    NameAr = "تطبيق أفضل الممارسات لضمان سرعة الموقع وحمايته من الثغرات.",
+                    NameEn = "Apply best practices to ensure website speed and protection against vulnerabilities.",
+                    CourseId = course.Id,
+                    CreationTime = DateTime.Now
+                }
+
+        };
+
+                _context.CoursesDetails.AddRange(details);
+                _context.SaveChanges();
             }
         }
     }
