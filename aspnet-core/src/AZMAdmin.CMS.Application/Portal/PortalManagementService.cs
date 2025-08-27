@@ -5,6 +5,7 @@ using AZMAdmin.CMS.ContentCategories.Dto;
 using AZMAdmin.CMS.Contents;
 using AZMAdmin.CMS.Contents.Dto;
 using AZMAdmin.CMS.Courses;
+using AZMAdmin.CMS.CoursesDetails;
 using AZMAdmin.CMS.HomeBanners;
 using AZMAdmin.CMS.HomeBanners.Dto;
 using AZMAdmin.CMS.Portal.Dto;
@@ -23,12 +24,17 @@ namespace AZMAdmin.CMS.Portal
         private readonly IRepository<ContentCategory, int> _repository;
         private readonly IRepository<Content, int> _contentRepo;
         private readonly IRepository<HomeBanner, int> _homeBannserRepo;
+        private readonly IRepository<Course, int> _courseRepo;
+        private readonly IRepository<CourseDetails, int> _courseDetailsRepo;
         public PortalManagementService(IRepository<ContentCategory, int> repository,
-            IRepository<Content, int> contentRepo, IRepository<HomeBanner, int> homeBannserRepo)
+            IRepository<Content, int> contentRepo, IRepository<Course, int> courseRepo,
+            IRepository<HomeBanner, int> homeBannserRepo, IRepository<CourseDetails, int> courseDetailsRepo)
         {
             _repository = repository;
             _contentRepo = contentRepo;
             _homeBannserRepo = homeBannserRepo;
+            _courseRepo = courseRepo;
+            _courseDetailsRepo = courseDetailsRepo;
         }
 
         public async Task<ContentCategoryDto> GetByCode(string code)
@@ -53,7 +59,7 @@ namespace AZMAdmin.CMS.Portal
             var result = entities.Select(x => new ContentWithAttachmentDto
             {
                 Id = x.Id,
-                DisplayName =CultureInfo.CurrentCulture.Name=="en"? x.NameEn:x.NameAr,
+                DisplayName = CultureInfo.CurrentCulture.Name == "en" ? x.NameEn : x.NameAr,
                 DisplayDescription = CultureInfo.CurrentCulture.Name == "en" ? x.DescriptionEn : x.DescriptionAr,
                 RedirectUrl = x.RedirectUrl,
                 IsActive = x.IsActive,
@@ -69,15 +75,49 @@ namespace AZMAdmin.CMS.Portal
 
         public async Task<List<PortalHomeBanner>> GetHomeBanners()
         {
-            var homeBanners =  _homeBannserRepo.GetAllIncluding(s => s.Image, s => s.Logo)
-                .Where(s=>s.IsActive ==true).Select(mod => new PortalHomeBanner
+            var homeBanners = _homeBannserRepo.GetAllIncluding(s => s.Image, s => s.Logo)
+                .Where(s => s.IsActive == true).Select(mod => new PortalHomeBanner
                 {
-                Id = mod.Id,
-                DisplayName = CultureInfo.CurrentCulture.Name == "en" ? mod.NameEn : mod.NameAr,
-                ImageURL = mod.ImageId !=null? mod.Image.Path:null,
-                LogoURL = mod.LogoId != null ? mod.Logo.Path : null,
+                    Id = mod.Id,
+                    DisplayName = CultureInfo.CurrentCulture.Name == "en" ? mod.NameEn : mod.NameAr,
+                    ImageURL = mod.ImageId != null ? mod.Image.Path : null,
+                    LogoURL = mod.LogoId != null ? mod.Logo.Path : null,
                 }).ToList();
             return homeBanners;
+        }
+
+        public async Task<List<ActiveCoursesDto>> GetCourses()
+        {
+            var entity = _courseRepo.GetAll().Where(s => s.IsActive == true).Select(mod => new ActiveCoursesDto
+            {
+                Id = mod.Id,
+                DisplayName = CultureInfo.CurrentCulture.Name == "en" ? mod.NameEn : mod.NameAr,
+                DisplayDescription = CultureInfo.CurrentCulture.Name == "en" ? mod.DescriptionEn : mod.DescriptionAr,
+            }).ToList();
+
+            return entity;
+        }
+
+        public async Task<ActiveCourseDto> GetCourseWithDetails(int courseId)
+        {
+            var entity = _courseRepo.GetAll().Where(s => s.IsActive == true && s.Id == courseId).Select(mod => new ActiveCourseDto
+            {
+                Id = mod.Id,
+                DisplayName = CultureInfo.CurrentCulture.Name == "en" ? mod.NameEn : mod.NameAr,
+                DisplayDescription = CultureInfo.CurrentCulture.Name == "en" ? mod.DescriptionEn : mod.DescriptionAr,
+            }).FirstOrDefault();
+            if (entity !=null)
+            {
+                entity.Details = _courseDetailsRepo.GetAll().Where(s => s.CourseId == courseId).Select(mod => new PortalCourseDetailsDto
+                {
+                    Id = mod.Id,
+                    DisplayName = CultureInfo.CurrentCulture.Name == "en" ? mod.NameEn : mod.NameAr,
+                }).ToList();
+            }
+           
+
+
+            return entity;
         }
     }
 }

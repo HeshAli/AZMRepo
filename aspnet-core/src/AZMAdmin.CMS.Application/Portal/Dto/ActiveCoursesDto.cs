@@ -1,0 +1,33 @@
+﻿using Abp.Application.Services.Dto;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AZMAdmin.CMS.Portal.Dto
+{
+    public class ActiveCoursesDto : EntityDto<int>
+    {
+        public string DisplayName { get; set; } 
+        public string DisplayDescription { get; set; }
+        public string RedirectUrl { get; set; }
+        public bool IsActive { get; set; }
+    }
+
+    public class ActiveCourseDto : EntityDto<int>
+    {
+        public string DisplayName { get; set; }
+        public string DisplayDescription { get; set; }
+        public string RedirectUrl { get; set; }
+        public bool IsActive { get; set; }
+
+        public List<PortalCourseDetailsDto> Details { get; set; }
+    }
+
+    public class PortalCourseDetailsDto : EntityDto<int>
+    {
+        public string DisplayName { get; set; } 
+        
+    }
+}
