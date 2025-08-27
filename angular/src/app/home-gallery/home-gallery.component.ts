@@ -101,7 +101,6 @@ export class HomeGalleryComponent extends PagedListingComponentBase<ContentDto> 
     let modalRef: BsModalRef;
 
     if (!id) {
-      // Create flow
       modalRef = this._modalService.show(CreateHomeGalleryComponent, {
         class: "modal-lg",
       });
@@ -109,7 +108,6 @@ export class HomeGalleryComponent extends PagedListingComponentBase<ContentDto> 
       return;
     }
 
-    // Edit flow: get content, then attachment (if any)
     this._contentServiceProxy
       .getContent(id)
       .pipe(

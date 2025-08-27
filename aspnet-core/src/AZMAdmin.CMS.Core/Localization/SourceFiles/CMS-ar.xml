@@ -54,6 +54,15 @@
     <text name="AnswerAr">الإجابة باللغة العربية</text>
     <text name="AnswerEn">الإجابة باللغة الإنجليزية</text>
     <text name="AboutAzm">عن عزم</text>
+    <text name="AboutAzmContent">محتوى عن عزم</text>
+		<text name="CreateGeneralObjectives">انشاء الأهداف العامة</text>
+		<text name="EditGeneralObjectives">تعديل الأهداف العامة</text>
+		<text name="GeneralObjectives">الأهداف العامة</text>
+		<text name="EditTrainingCourses">تعديل الوحدة التدريبية</text>
+		<text name="TrainingCourses">الوحدات التدريبية</text>
+		<text name="CreateTrainingCourses">انشاء وحدة تدريبية</text>
+		<text name="TrainingUnitDeleteWarningMessage">سوف يتم حذف الوحدة التدريبية</text>
+		<text name="GeneralObjectiveDeleteWarningMessage">سوف يتم حذف الهدف العام</text>
     <text name="AboutAzmContent">محتوى عن عزم</text> 
 	</texts>
 </localizationDictionary>

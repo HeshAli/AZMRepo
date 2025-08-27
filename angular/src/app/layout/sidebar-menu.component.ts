@@ -94,32 +94,33 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
           "far fa-circle"
         ),
       ]),
-        new MenuItem(this.l("Courses"), "", "fas fa-dot-circle", "", [
-            new MenuItem(
-                this.l("CourseContent"),
-                "/app/courseContent",
-                "far fa-circle"
-            ),
-            new MenuItem(
-                this.l("GeneralObjectives"),
-                "/app/GeneralObjectives",
-                "far fa-circle"
-            )
-        ]),
-        new MenuItem(this.l("Questions"), "", "fas fa-dot-circle", "", [
-            new MenuItem(
-                this.l("Questions"),
-                "/app/questions",
-                "far fa-circle"
-            ) 
-        ]),
-        new MenuItem(this.l("AboutAzm"), "", "fas fa-dot-circle", "", [
-            new MenuItem(
-                this.l("AboutAzmContent"),
-                "/app/aboutAzmcontent",
-                "far fa-circle"
-            )
-        ])
+      new MenuItem(this.l("Courses"), "", "fas fa-dot-circle", "", [
+        new MenuItem(
+          this.l("CourseContent"),
+          "/app/courseContent",
+          "far fa-circle"
+        ),
+        new MenuItem(
+          this.l("GeneralObjectives"),
+          "/app/general-objectives",
+          "far fa-circle"
+        ),
+        new MenuItem(
+          this.l("TrainingCourses"),
+          "/app/training-courses",
+          "far fa-circle"
+        ),
+      ]),
+      new MenuItem(this.l("Questions"), "", "fas fa-dot-circle", "", [
+        new MenuItem(this.l("Questions"), "/app/questions", "far fa-circle"),
+      ]),
+      new MenuItem(this.l("AboutAzm"), "", "fas fa-dot-circle", "", [
+        new MenuItem(
+          this.l("AboutAzmContent"),
+          "/app/aboutAzmcontent",
+          "far fa-circle"
+        ),
+      ]),
     ];
   }
 
