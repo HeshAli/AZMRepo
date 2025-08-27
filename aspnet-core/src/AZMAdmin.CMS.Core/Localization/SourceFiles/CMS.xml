@@ -157,5 +157,13 @@
 	  <text name="CreateTrainingCourses">Create Training Course</text>
 	  <text name="TrainingUnitDeleteWarningMessage">The training Course will be deleted</text>
 	  <text name="GeneralObjectiveDeleteWarningMessage">The general objective will be deleted</text>
+
+    <text name="Portal_Home">Home</text>
+    <text name="Portal_About_Us">About Azm</text>
+    <text name="Portal_Training_Programs">Training Programs</text>
+    <text name="Portal_FAQ">FAQ</text>
+    <text name="Portal_Contact_Us">Contact Us</text>
+    <text name="Portal_Inquiries_Assistance">Inquiries Assistance</text>
+    <text name="Portal_Logo">Logo</text>
   </texts>
 </localizationDictionary>
