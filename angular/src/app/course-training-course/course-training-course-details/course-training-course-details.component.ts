@@ -114,12 +114,13 @@ export class CourseTrainingCourseDetailsComponent
 
   private showCreateOrEditCourseDetailsDialog(id?: number): void {
     let modalRef: BsModalRef;
-
+    debugger
     if (!id) {
       modalRef = this._modalService.show(
         CourseTrainingCourseDetailsCreateComponent,
         {
-          class: "modal-lg",
+            class: "modal-lg",
+            initialState: { id: this.id },
         }
       );
     } else {

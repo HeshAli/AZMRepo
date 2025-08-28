@@ -2,7 +2,7 @@
       autocomplete="off"
     #contentForm="ngForm"
       (ngSubmit)="save()">
-    <abp-modal-header [title]="'CreateTrainingDetailsCourses' | localize"
+    <abp-modal-header [title]="'TrainingCoursesDetails' | localize"
                       (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
     <div class="modal-body">
 
@@ -43,52 +43,9 @@
                                         [controlEl]="nameEnEl"></abp-validation-summary>
             </div>
         </div>
+         
 
-        <div class="form-group row required">
-            <label class="col-md-3 col-form-label" for="name">
-                {{ "DescAr" | localize }}
-            </label>
-            <div class="col-md-9">
-                <input type="text"
-                       class="form-control"
-                       name="descriptionAr"
-                       id="descriptionAr"
-                       required
-                       minlength="2"
-                       [(ngModel)]="course.descriptionAr"
-                       #descriptionArModel="ngModel"
-                       #descriptionArEl />
-                <abp-validation-summary [control]="descriptionArModel"
-                                        [controlEl]="descriptionArEl"></abp-validation-summary>
-            </div>
-        </div>
-        <div class="form-group row required">
-            <label class="col-md-3 col-form-label" for="displayName">
-                {{ "DescEn" | localize }}
-            </label>
-            <div class="col-md-9">
-                <input type="text"
-                       class="form-control"
-                       name="descriptionEn"
-                       id="descriptionEn"
-                       required
-                       minlength="2"
-                       [(ngModel)]="course.descriptionEn"
-                       #descriptionEnModel="ngModel"
-                       #descriptionEnEl />
-                <abp-validation-summary [control]="descriptionEnModel"
-                                        [controlEl]="descriptionEnEl"></abp-validation-summary>
-            </div>
-        </div>
-
-        <div class="form-check mb-3">
-            <input id="isActive"
-                   name="isActive"
-                   type="checkbox"
-                   class="form-check-input"
-                   [(ngModel)]="course.isActive" />
-            <label for="isActive" class="form-check-label">{{ l('IsActive') }}</label>
-        </div>
+        
 
     </div>
     <abp-modal-footer [cancelDisabled]="saving"
